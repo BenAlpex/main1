@@ -4,242 +4,51 @@
 <meta charset="UTF-8">
 <title>Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-:root {
-  --neon: #00ff9c;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, sans-serif;
-}
-
-body {
-  height: 100vh;
-  background: linear-gradient(-45deg, #020403, #071f14, #020403);
-  background-size: 400% 400%;
-  animation: bg 20s ease infinite;
-  overflow: hidden;
-  color: white;
-}
-
-@keyframes bg {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* NOISE */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: .06;
-  pointer-events: none;
-}
-
-/* INTRO */
-.intro {
-  position: fixed;
-  inset: 0;
-  background: #020403;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-  animation: introOut 1s ease forwards;
-  animation-delay: 2.2s;
-}
-
-.intro h1 {
-  font-size: 3rem;
-  color: var(--neon);
-  letter-spacing: 6px;
-  animation: glow 2s ease infinite;
-}
-
-@keyframes glow {
-  0%,100% { text-shadow: 0 0 10px var(--neon); }
-  50% { text-shadow: 0 0 30px var(--neon); }
-}
-
-@keyframes introOut {
-  to { opacity: 0; pointer-events: none; }
-}
-
-/* SCENE */
-.scene {
-  position: fixed;
-  inset: 0;
-  perspective: 900px;
-  pointer-events: none;
-}
-
-/* CUBES */
-.cube {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border: 1px solid rgba(0,255,156,.25);
-  transform-style: preserve-3d;
-  animation: float 14s infinite ease-in-out;
-}
-
-.cube:nth-child(1) { top: 20%; left: 15%; }
-.cube:nth-child(2) { top: 60%; left: 70%; width: 160px; height: 160px; }
-.cube:nth-child(3) { top: 30%; left: 75%; width: 90px; height: 90px; }
-
-@keyframes float {
-  0% { transform: rotateX(0) rotateY(0) translateZ(0); }
-  50% { transform: rotateX(25deg) rotateY(35deg) translateZ(40px); }
-  100% { transform: rotateX(0) rotateY(0) translateZ(0); }
-}
-
-/* HEXAGON */
-.hex {
-  position: absolute;
-  width: 140px;
-  height: 80px;
-  border: 1px solid rgba(0,255,156,.2);
-  clip-path: polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);
-  animation: drift 20s linear infinite;
-}
-
-.hex:nth-child(4) { top: 70%; left: 20%; }
-.hex:nth-child(5) { top: 15%; left: 55%; }
-
-@keyframes drift {
-  from { transform: translateX(-100px); }
-  to { transform: translateX(200px); }
-}
-
-/* CENTER UI */
-.center-ui {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 220px);
-  gap: 26px;
-}
-
-.card {
-  background: rgba(0,0,0,.65);
-  backdrop-filter: blur(18px);
-  border-radius: 18px;
-  padding: 22px;
-  border: 1px solid rgba(255,255,255,.06);
-  box-shadow: 0 0 35px rgba(0,255,156,.18);
-  transition: .35s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-}
-
-.card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 0 60px rgba(0,255,156,.4);
-}
-
-.card img {
-  width: 44px;
-  height: 44px;
-  filter: drop-shadow(0 0 6px rgba(0,255,156,.6));
-}
-
-.card button {
-  background: transparent;
-  border: 1px solid var(--neon);
-  color: var(--neon);
-  padding: 8px 16px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.card button:hover {
-  background: var(--neon);
-  color: black;
-}
-
-/* MOBILE */
-@media(max-width: 520px) {
-  .cards { grid-template-columns: 1fr; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="intro">
-  <h1>WELCOME</h1>
+<!-- BACKGROUND -->
+<div class="bg">
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
 </div>
 
-<div class="scene">
-  <div class="cube"></div>
-  <div class="cube"></div>
-  <div class="cube"></div>
-  <div class="hex"></div>
-  <div class="hex"></div>
-</div>
-
+<!-- CENTER UI -->
 <div class="center-ui">
   <div class="cards">
 
-    <div class="card">
+    <div class="card" onclick="go('https://discord.com')">
       <img src="https://cdn-icons-png.flaticon.com/512/5968/5968968.png">
-      <button onclick="go('https://discord.com/')">Discord</button>
+      <span>Discord</span>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="go('https://tiktok.com')">
       <img src="https://cdn-icons-png.flaticon.com/512/3116/3116491.png">
-      <button onclick="go('https://tiktok.com/')">TikTok</button>
+      <span>TikTok</span>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="go('https://instagram.com')">
       <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png">
-      <button onclick="go('https://instagram.com/')">Instagram</button>
+      <span>Instagram</span>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="go('https://youtube.com')">
       <img src="https://cdn-icons-png.flaticon.com/512/1384/1384012.png">
-      <button onclick="go('https://youtube.com/')">YouTube</button>
+      <span>YouTube</span>
     </div>
 
   </div>
 </div>
 
+<script src="bg.js"></script>
 <script>
-function go(url) {
+function go(url){
   window.open(url, "_blank");
 }
-
-/* PARALLAX */
-document.addEventListener("mousemove", e => {
-  document.querySelectorAll(".cube,.hex").forEach(el => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 20;
-    el.style.transform += ` rotateX(${y}deg) rotateY(${x}deg)`;
-  });
-});
-
-/* GYROSCOPE */
-window.addEventListener("deviceorientation", e => {
-  document.querySelectorAll(".cube,.hex").forEach(el => {
-    el.style.transform =
-      `rotateX(${e.beta/8}deg) rotateY(${e.gamma/8}deg)`;
-  });
-});
 </script>
 
 </body>
