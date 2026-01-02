@@ -49,5 +49,21 @@
 function go(url){ window.open(url,"_blank"); }
 </script>
 
+  <script>
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width/2;
+    const y = e.clientY - r.top - r.height/2;
+    card.style.transform =
+      `rotateY(${x/15}deg) rotateX(${-y/15}deg) scale(1.08)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "scale(1)";
+  });
+});
+</script>
+
 </body>
 </html>
