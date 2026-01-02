@@ -7,9 +7,9 @@
 
 <style>
 :root {
-  --bg: #050a08;
+  --bg1: #050a08;
+  --bg2: #071f14;
   --neon: #00ff9c;
-  --dark: #020403;
 }
 
 * {
@@ -21,137 +21,147 @@
 
 body {
   height: 100vh;
-  background: radial-gradient(circle at top, #0a1f17, var(--bg));
+  background: linear-gradient(-45deg, #020403, #071f14, #020403);
+  background-size: 400% 400%;
+  animation: bg 20s ease infinite;
   overflow: hidden;
   color: white;
 }
 
-/* GRID */
-.grid {
+@keyframes bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* SOFT NOISE */
+body::after {
+  content: "";
   position: fixed;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(0,255,156,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,156,.08) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: gridMove 20s linear infinite;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: .05;
+  pointer-events: none;
 }
 
-@keyframes gridMove {
-  from { background-position: 0 0; }
-  to { background-position: 600px 600px; }
-}
-
-/* LASER LINES */
-.line {
-  position: absolute;
-  width: 120%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--neon), transparent);
-  animation: move 6s linear infinite;
-  opacity: .6;
-}
-
-.line:nth-child(1) { top: 20%; animation-duration: 5s; }
-.line:nth-child(2) { top: 50%; animation-duration: 7s; }
-.line:nth-child(3) { top: 80%; animation-duration: 6s; }
-
-@keyframes move {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(100%); }
-}
-
-/* CENTER TEXT (istersen silebilirsin) */
-.center {
+/* CENTER UI */
+.center-ui {
   position: absolute;
   inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
-  letter-spacing: 4px;
-  text-shadow: 0 0 20px var(--neon);
 }
 
-/* MUSIC MENU */
-.music {
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 220px);
+  gap: 25px;
+}
+
+.card {
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,.05);
+  box-shadow: 0 0 30px rgba(0,255,156,.15);
+  transition: .3s;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 50px rgba(0,255,156,.35);
+}
+
+.card img {
+  width: 40px;
+  height: 40px;
+}
+
+.card button {
+  background: transparent;
+  border: 1px solid var(--neon);
+  color: var(--neon);
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.card button:hover {
+  background: var(--neon);
+  color: black;
+}
+
+/* MUSIC PLAYER */
+.player {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background: rgba(0,0,0,.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(0,255,156,.3);
+  backdrop-filter: blur(14px);
   border-radius: 14px;
   padding: 12px;
-  display: flex;
-  gap: 8px;
-  box-shadow: 0 0 30px rgba(0,255,156,.3);
+  box-shadow: 0 0 25px rgba(0,255,156,.3);
 }
 
-.music input {
-  background: #020403;
-  border: 1px solid rgba(0,255,156,.3);
+.player input {
   color: white;
-  padding: 6px 8px;
-  border-radius: 8px;
-  width: 200px;
-}
-
-.music button {
-  background: var(--neon);
-  color: black;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-iframe {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 300px;
-  height: 80px;
-  border: none;
-  display: none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="grid"></div>
+<div class="center-ui">
+  <div class="cards">
 
-<div class="line"></div>
-<div class="line"></div>
-<div class="line"></div>
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png">
+      <button onclick="go('https://github.com/')">GitHub</button>
+    </div>
 
-<!-- İstersen sil -->
-<div class="center">PORTFOLIO</div>
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+      <button onclick="go('https://discord.com/')">Discord</button>
+    </div>
 
-<!-- MUSIC -->
-<div class="music">
-  <input id="sc" placeholder="SoundCloud linki..." />
-  <button onclick="play()">▶</button>
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png">
+      <button onclick="go('https://twitter.com/')">Twitter</button>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+      <button onclick="go('https://instagram.com/')">Instagram</button>
+    </div>
+
+  </div>
 </div>
 
-<iframe id="player" allow="autoplay"></iframe>
+<!-- MUSIC -->
+<div class="player">
+  <input type="file" accept="audio/*" onchange="play(this)">
+</div>
+
+<audio id="audio" loop></audio>
 
 <script>
-function play() {
-  const url = document.getElementById("sc").value;
-  if (!url.includes("soundcloud.com")) {
-    alert("SoundCloud linki gir");
-    return;
-  }
+function go(url) {
+  window.open(url, "_blank");
+}
 
-  const player = document.getElementById("player");
-  player.src =
-    "https://w.soundcloud.com/player/?url=" +
-    encodeURIComponent(url) +
-    "&auto_play=true";
-  player.style.display = "block";
+function play(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const audio = document.getElementById("audio");
+  audio.src = URL.createObjectURL(file);
+  audio.play();
 }
 </script>
 
