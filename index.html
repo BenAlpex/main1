@@ -9,13 +9,19 @@
 
 <body>
 
-<!-- BACKGROUND -->
+<!-- PARTICLES -->
+<canvas id="particles"></canvas>
+
+<!-- HEX BACKGROUND -->
 <div class="bg">
-  <div class="cube"></div>
-  <div class="cube"></div>
-  <div class="cube"></div>
-  <div class="cube"></div>
+  <div class="hex"></div>
+  <div class="hex"></div>
+  <div class="hex"></div>
+  <div class="hex"></div>
 </div>
+
+<!-- LOGO -->
+<div class="logo">YOUR NAME</div>
 
 <!-- CENTER UI -->
 <div class="center-ui">
@@ -45,10 +51,9 @@
 </div>
 
 <script src="bg.js"></script>
+<script src="particles.js"></script>
 <script>
-function go(url){
-  window.open(url, "_blank");
-}
+function go(url){ window.open(url,"_blank"); }
 </script>
 
 </body>
