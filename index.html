@@ -7,8 +7,6 @@
 
 <style>
 :root {
-  --bg1: #050a08;
-  --bg2: #071f14;
   --neon: #00ff9c;
 }
 
@@ -34,14 +32,59 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* SOFT NOISE */
+/* NOISE */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: .05;
+  opacity: .06;
   pointer-events: none;
+}
+
+/* 3D BACKGROUND OBJECTS */
+.scene {
+  position: fixed;
+  inset: 0;
+  perspective: 800px;
+  pointer-events: none;
+}
+
+.cube {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 1px solid rgba(0,255,156,.25);
+  transform-style: preserve-3d;
+  animation: float 12s infinite ease-in-out;
+}
+
+.cube:nth-child(1) {
+  top: 20%;
+  left: 15%;
+  animation-duration: 14s;
+}
+
+.cube:nth-child(2) {
+  top: 60%;
+  left: 70%;
+  width: 160px;
+  height: 160px;
+  animation-duration: 18s;
+}
+
+.cube:nth-child(3) {
+  top: 30%;
+  left: 75%;
+  width: 90px;
+  height: 90px;
+  animation-duration: 16s;
+}
+
+@keyframes float {
+  0% { transform: rotateX(0deg) rotateY(0deg) translateZ(0); }
+  50% { transform: rotateX(20deg) rotateY(30deg) translateZ(40px); }
+  100% { transform: rotateX(0deg) rotateY(0deg) translateZ(0); }
 }
 
 /* CENTER UI */
@@ -51,42 +94,45 @@ body::after {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(2, 220px);
-  gap: 25px;
+  gap: 26px;
 }
 
 .card {
-  background: rgba(0,0,0,.6);
-  backdrop-filter: blur(16px);
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(18px);
   border-radius: 18px;
-  padding: 20px;
-  border: 1px solid rgba(255,255,255,.05);
-  box-shadow: 0 0 30px rgba(0,255,156,.15);
-  transition: .3s;
+  padding: 22px;
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 0 35px rgba(0,255,156,.18);
+  transition: .35s;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  align-items: center;
+  gap: 14px;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 50px rgba(0,255,156,.35);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0 60px rgba(0,255,156,.4);
 }
 
 .card img {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  filter: drop-shadow(0 0 6px rgba(0,255,156,.6));
 }
 
 .card button {
   background: transparent;
   border: 1px solid var(--neon);
   color: var(--neon);
-  padding: 8px;
+  padding: 8px 16px;
   border-radius: 10px;
   cursor: pointer;
   transition: .3s;
@@ -97,72 +143,64 @@ body::after {
   color: black;
 }
 
-/* MUSIC PLAYER */
-.player {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(0,0,0,.7);
-  backdrop-filter: blur(14px);
-  border-radius: 14px;
-  padding: 12px;
-  box-shadow: 0 0 25px rgba(0,255,156,.3);
-}
-
-.player input {
-  color: white;
+/* RESPONSIVE */
+@media(max-width: 520px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- BACKGROUND OBJECTS -->
+<div class="scene">
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+</div>
+
+<!-- CENTER UI -->
 <div class="center-ui">
   <div class="cards">
 
     <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png">
-      <button onclick="go('https://github.com/')">GitHub</button>
-    </div>
-
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968968.png">
       <button onclick="go('https://discord.com/')">Discord</button>
     </div>
 
     <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png">
-      <button onclick="go('https://twitter.com/')">Twitter</button>
+      <img src="https://cdn-icons-png.flaticon.com/512/3116/3116491.png">
+      <button onclick="go('https://tiktok.com/')">TikTok</button>
     </div>
 
     <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png">
       <button onclick="go('https://instagram.com/')">Instagram</button>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384012.png">
+      <button onclick="go('https://youtube.com/')">YouTube</button>
     </div>
 
   </div>
 </div>
-
-<!-- MUSIC -->
-<div class="player">
-  <input type="file" accept="audio/*" onchange="play(this)">
-</div>
-
-<audio id="audio" loop></audio>
 
 <script>
 function go(url) {
   window.open(url, "_blank");
 }
 
-function play(input) {
-  const file = input.files[0];
-  if (!file) return;
-
-  const audio = document.getElementById("audio");
-  audio.src = URL.createObjectURL(file);
-  audio.play();
-}
+// PARALLAX EFFECT
+document.addEventListener("mousemove", e => {
+  document.querySelectorAll(".cube").forEach((cube, i) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 30;
+    const y = (e.clientY / window.innerHeight - 0.5) * 30;
+    cube.style.transform += ` rotateX(${y}deg) rotateY(${x}deg)`;
+  });
+});
 </script>
 
 </body>
