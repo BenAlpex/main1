@@ -2,149 +2,156 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>My Portfolio</title>
+<title>Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 :root {
-    --bg: #0b0f14;
-    --card: #111827;
-    --neon: #7c3aed;
-    --text: #e5e7eb;
+  --bg: #050a08;
+  --neon: #00ff9c;
+  --dark: #020403;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', system-ui;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
 }
 
 body {
-    background: radial-gradient(circle at top, #111827, var(--bg));
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
+  height: 100vh;
+  background: radial-gradient(circle at top, #0a1f17, var(--bg));
+  overflow: hidden;
+  color: white;
 }
 
-/* HERO */
-.hero {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
+/* GRID */
+.grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,156,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,156,.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridMove 20s linear infinite;
 }
 
-.hero h1 {
-    font-size: 3.5rem;
-    text-shadow: 0 0 20px var(--neon);
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to { background-position: 600px 600px; }
 }
 
-.hero p {
-    opacity: .7;
-    margin-top: 10px;
+/* LASER LINES */
+.line {
+  position: absolute;
+  width: 120%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon), transparent);
+  animation: move 6s linear infinite;
+  opacity: .6;
 }
 
-/* PORTFOLIO */
-.portfolio {
-    padding: 80px 10%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 30px;
+.line:nth-child(1) { top: 20%; animation-duration: 5s; }
+.line:nth-child(2) { top: 50%; animation-duration: 7s; }
+.line:nth-child(3) { top: 80%; animation-duration: 6s; }
+
+@keyframes move {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
 }
 
-.card {
-    background: linear-gradient(145deg, #0f172a, #020617);
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 0 30px rgba(124,58,237,.15);
-    transition: .3s;
+/* CENTER TEXT (istersen silebilirsin) */
+.center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  text-shadow: 0 0 20px var(--neon);
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 50px rgba(124,58,237,.4);
+/* MUSIC MENU */
+.music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0,255,156,.3);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  box-shadow: 0 0 30px rgba(0,255,156,.3);
 }
 
-.card h3 {
-    color: var(--neon);
-    margin-bottom: 10px;
+.music input {
+  background: #020403;
+  border: 1px solid rgba(0,255,156,.3);
+  color: white;
+  padding: 6px 8px;
+  border-radius: 8px;
+  width: 200px;
 }
 
-/* PLAYER */
-.player {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(17,24,39,.9);
-    backdrop-filter: blur(12px);
-    border-radius: 14px;
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 0 25px rgba(124,58,237,.3);
+.music button {
+  background: var(--neon);
+  color: black;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.player button {
-    background: var(--neon);
-    border: none;
-    color: white;
-    padding: 10px 14px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.player span {
-    font-size: .9rem;
-    opacity: .8;
+iframe {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  height: 80px;
+  border: none;
+  display: none;
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
-    <h1>alpeX</h1>
-    <p>Developer • Tech Enthusiast • Cyber Aesthetic</p>
-</section>
+<div class="grid"></div>
 
-<section class="portfolio">
-    <div class="card">
-        <h3>Project One</h3>
-        <p>Web tabanlı modern uygulama.</p>
-    </div>
-    <div class="card">
-        <h3>Project Two</h3>
-        <p>API, otomasyon ve backend.</p>
-    </div>
-    <div class="card">
-        <h3>Project Three</h3>
-        <p>UI/UX + performans odaklı.</p>
-    </div>
-</section>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
 
-<!-- MUSIC PLAYER -->
-<div class="player">
-    <button onclick="toggleMusic()">▶</button>
-    <span>Background Music</span>
-    <audio id="music" src="music.mp3" loop></audio>
+<!-- İstersen sil -->
+<div class="center">PORTFOLIO</div>
+
+<!-- MUSIC -->
+<div class="music">
+  <input id="sc" placeholder="SoundCloud linki..." />
+  <button onclick="play()">▶</button>
 </div>
 
-<script>
-const music = document.getElementById("music");
-const btn = document.querySelector(".player button");
+<iframe id="player" allow="autoplay"></iframe>
 
-function toggleMusic(){
-    if(music.paused){
-        music.play();
-        btn.textContent = "⏸";
-    } else {
-        music.pause();
-        btn.textContent = "▶";
-    }
+<script>
+function play() {
+  const url = document.getElementById("sc").value;
+  if (!url.includes("soundcloud.com")) {
+    alert("SoundCloud linki gir");
+    return;
+  }
+
+  const player = document.getElementById("player");
+  player.src =
+    "https://w.soundcloud.com/player/?url=" +
+    encodeURIComponent(url) +
+    "&auto_play=true";
+  player.style.display = "block";
 }
 </script>
 
