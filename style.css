@@ -116,3 +116,14 @@ body {
   padding:6px 16px;
   border-radius:14px;
 }
+
+.mouse-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0,255,156,.18), transparent 60%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  filter: blur(20px);
+}
