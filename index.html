@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dijital Portfolyo</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital Portfolyo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,100 +17,84 @@
 
 <!-- ===== HEADER ===== -->
 <div class="header">
-  <div class="logo">✦ @kullaniciadiniz ✦</div>
-  <div class="subtitle">🚀 Dijital İçerik Üreticisi · Oyun & Teknoloji</div>
+    <div class="logo">✦ @kullaniciadiniz ✦</div>
+    <div class="subtitle">🚀 Dijital İçerik Üreticisi · Oyun & Teknoloji</div>
 </div>
 
 <!-- ===== MÜZİK BUTONU ===== -->
 <button id="musicBtn" onclick="toggleMusic()">
-  <span class="music-icon">♪</span>
+    <span class="music-icon">♪</span>
 </button>
 
 <!-- ===== CARDS ===== -->
 <div class="center-ui">
-  <div class="cards">
+    <div class="cards">
 
-    <!-- Discord -->
-    <div class="card" onclick="go('https://discord.com/users/senin-id')">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.42 2.157-2.42 1.21 0 2.176 1.096 2.157 2.42 0 1.334-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.42 2.157-2.42 1.21 0 2.176 1.096 2.157 2.42 0 1.334-.946 2.419-2.157 2.419z"/>
-        </svg>
-      </div>
-      <span>Discord</span>
+        <!-- Discord -->
+        <div class="card" onclick="go('https://discord.com/users/senin-id')">
+            <div class="card-icon">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
+            </div>
+            <span>Discord</span>
+        </div>
+
+        <!-- TikTok -->
+        <div class="card" onclick="go('https://tiktok.com/@senin-kullanici')">
+            <div class="card-icon">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" alt="TikTok">
+            </div>
+            <span>TikTok</span>
+        </div>
+
+        <!-- Instagram -->
+        <div class="card" onclick="go('https://instagram.com/senin-kullanici')">
+            <div class="card-icon">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
+            </div>
+            <span>Instagram</span>
+        </div>
+
+        <!-- YouTube -->
+        <div class="card" onclick="go('https://youtube.com/@senin-kanal')">
+            <div class="card-icon">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
+            </div>
+            <span>YouTube</span>
+        </div>
+
+        <!-- Steam - DÜZELTİLDİ -->
+        <div class="card" onclick="go('https://steamcommunity.com/id/senin-id')">
+            <div class="card-icon">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/steam.svg" alt="Steam">
+            </div>
+            <span>Steam</span>
+        </div>
+
+        <!-- Roblox - DÜZELTİLDİ -->
+        <div class="card" onclick="go('https://roblox.com/users/senin-id')">
+            <div class="card-icon">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" alt="Roblox">
+            </div>
+            <span>Roblox</span>
+        </div>
+
+        <!-- Spotify -->
+        <div class="card" onclick="go('https://open.spotify.com/user/senin-id')">
+            <div class="card-icon">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/spotify.svg" alt="Spotify">
+            </div>
+            <span>Spotify</span>
+        </div>
+
+        <!-- GitHub -->
+        <div class="card" onclick="go('https://github.com/senin-kullanici')">
+            <div class="card-icon">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
+            </div>
+            <span>GitHub</span>
+        </div>
+
     </div>
-
-    <!-- TikTok -->
-    <div class="card" onclick="go('https://tiktok.com/@senin-kullanici')">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54.13h-3.09v12.86a2.78 2.78 0 0 1-2.77 2.78 2.78 2.78 0 0 1-2.77-2.78 2.78 2.78 0 0 1 2.77-2.78c.31 0 .61.06.89.16V7.06a5.87 5.87 0 0 0-4.96 5.74 5.87 5.87 0 0 0 5.87 5.87 5.87 5.87 0 0 0 5.87-5.87V6.44c.63.45 1.35.83 2.12 1.09V4.09c-.48-.02-.95-.17-1.4-.44z"/>
-        </svg>
-      </div>
-      <span>TikTok</span>
-    </div>
-
-    <!-- Instagram -->
-    <div class="card" onclick="go('https://instagram.com/senin-kullanici')">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-        </svg>
-      </div>
-      <span>Instagram</span>
-    </div>
-
-    <!-- YouTube -->
-    <div class="card" onclick="go('https://youtube.com/@senin-kanal')">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-        </svg>
-      </div>
-      <span>YouTube</span>
-    </div>
-
-    <!-- Steam - DÜZELTİLDİ -->
-    <div class="card" onclick="go('https://steamcommunity.com/id/senin-id')">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M11.797 0C5.281 0 0 5.281 0 11.797c0 5.24 3.418 9.694 8.171 11.232l2.576-4.097c.354.104.725.156 1.105.156 2.03 0 3.677-1.647 3.677-3.677 0-.648-.168-1.258-.463-1.786l3.155-2.712c.544-.064 1.074-.231 1.558-.486 1.598-.84 2.506-2.571 2.229-4.254-.277-1.684-1.647-3.031-3.331-3.278-1.684-.247-3.296.578-4.161 2.054-.495.845-.683 1.797-.54 2.722l-3.686 3.168c-.709-.23-1.47-.309-2.221-.221l-2.716-4.187c.616-1.343.859-2.836.707-4.343C5.383 5.691 2.471 8.188 2.471 11.797c0 5.149 4.177 9.326 9.326 9.326 5.149 0 9.326-4.177 9.326-9.326S16.946 0 11.797 0zM9.857 16.779c-1.604 0-2.908-1.289-2.931-2.883l2.591 1.552c.403.249.862.344 1.323.271.459-.073.869-.323 1.149-.712l1.619 1.014c-.541.702-1.375 1.117-2.274 1.117-.157 0-.314-.012-.477-.036zm5.574-3.555c-.782 0-1.416-.634-1.416-1.416s.634-1.416 1.416-1.416 1.416.634 1.416 1.416-.634 1.416-1.416 1.416z"/>
-        </svg>
-      </div>
-      <span>Steam</span>
-    </div>
-
-    <!-- Roblox - DÜZELTİLDİ -->
-    <div class="card" onclick="go('https://roblox.com/users/senin-id')">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3.5 0C1.567 0 0 1.567 0 3.5v17C0 22.433 1.567 24 3.5 24h17c1.933 0 3.5-1.567 3.5-3.5v-17C24 1.567 22.433 0 20.5 0h-17zm4.5 5h8c1.657 0 3 1.343 3 3v8c0 1.657-1.343 3-3 3H8c-1.657 0-3-1.343-3-3V8c0-1.657 1.343-3 3-3zm0 2c-.552 0-1 .448-1 1v8c0 .552.448 1 1 1h8c.552 0 1-.448 1-1V8c0-.552-.448-1-1-1H8z"/>
-        </svg>
-      </div>
-      <span>Roblox</span>
-    </div>
-
-    <!-- Spotify -->
-    <div class="card" onclick="go('https://open.spotify.com/user/senin-id')">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.48.66.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.18.48.66.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-1.2-.18-1.38-.72-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719.9.42 1.441-.3.42-.9.6-1.441.3z"/>
-        </svg>
-      </div>
-      <span>Spotify</span>
-    </div>
-
-    <!-- GitHub -->
-    <div class="card" onclick="go('https://github.com/senin-kullanici')">
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.15 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.62.24 2.85.12 3.15.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-      </div>
-      <span>GitHub</span>
-    </div>
-
-  </div>
 </div>
 
 <script src="bg.js"></script>
@@ -118,7 +102,7 @@
 
 <script>
 function go(url) {
-  window.open(url, "_blank");
+    window.open(url, "_blank");
 }
 
 // MÜZİK KONTROLÜ
@@ -126,49 +110,49 @@ let isMusicPlaying = false;
 let audio = null;
 
 function toggleMusic() {
-  const btn = document.getElementById('musicBtn');
-  const icon = btn.querySelector('.music-icon');
-  
-  if (!audio) {
-    // Gerçek müzik eklemek için:
-    // audio = new Audio('/assets/muzik.mp3');
-    // audio.loop = true;
-    // audio.volume = 0.2;
-    
+    const btn = document.getElementById('musicBtn');
+    const icon = btn.querySelector('.music-icon');
+
+    if (!audio) {
+        // Gerçek müzik eklemek için:
+        // audio = new Audio('/assets/muzik.mp3');
+        // audio.loop = true;
+        // audio.volume = 0.2;
+
+        isMusicPlaying = !isMusicPlaying;
+        icon.textContent = isMusicPlaying ? '♫' : '♪';
+        btn.classList.toggle('playing');
+        return;
+    }
+
+    if (isMusicPlaying) {
+        audio.pause();
+        icon.textContent = '♪';
+    } else {
+        audio.play();
+        icon.textContent = '♫';
+    }
     isMusicPlaying = !isMusicPlaying;
-    icon.textContent = isMusicPlaying ? '♫' : '♪';
     btn.classList.toggle('playing');
-    return;
-  }
-  
-  if (isMusicPlaying) {
-    audio.pause();
-    icon.textContent = '♪';
-  } else {
-    audio.play();
-    icon.textContent = '♫';
-  }
-  isMusicPlaying = !isMusicPlaying;
-  btn.classList.toggle('playing');
 }
 
 // 3D TİLT EFECT
 document.querySelectorAll(".card").forEach(card => {
-  card.addEventListener("mousemove", e => {
-    const r = card.getBoundingClientRect();
-    const x = e.clientX - r.left - r.width / 2;
-    const y = e.clientY - r.top - r.height / 2;
-    card.style.transform = `
-      rotateY(${x / 20}deg) 
-      rotateX(${-y / 20}deg) 
-      translateY(-8px) 
-      scale(1.05)
-    `;
-  });
+    card.addEventListener("mousemove", e => {
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        card.style.transform = `
+            rotateY(${x / 20}deg) 
+            rotateX(${-y / 20}deg) 
+            translateY(-8px) 
+            scale(1.05)
+        `;
+    });
 
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "translateY(0) scale(1)";
-  });
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "translateY(0) scale(1)";
+    });
 });
 </script>
 
