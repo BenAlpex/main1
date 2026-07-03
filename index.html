@@ -23,14 +23,12 @@
 
 <!-- ===== MÜZİK BUTONU - SOL ÜST ===== -->
 <button id="musicBtn" onclick="toggleMusic()">
-    <svg class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <!-- Ses dalgası ikonu -->
-        <path d="M3 18V12M7 18V6M11 18V9M15 18V3M19 18V15" stroke-linecap="round"/>
+    <svg class="music-icon play-icon" viewBox="0 0 24 24" fill="currentColor">
+        <polygon points="5,3 19,12 5,21" />
     </svg>
-    <svg class="music-icon mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
-        <!-- Sessiz ikonu -->
-        <path d="M3 18V12M7 18V6M11 18V9M15 18V3M19 18V15" stroke-linecap="round"/>
-        <path d="M20 8L14 14M14 8L20 14" stroke-linecap="round"/>
+    <svg class="music-icon pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+        <rect x="6" y="4" width="4" height="16" />
+        <rect x="14" y="4" width="4" height="16" />
     </svg>
 </button>
 
@@ -119,8 +117,8 @@ let audio = null;
 
 function toggleMusic() {
     const btn = document.getElementById('musicBtn');
-    const playIcon = btn.querySelector('.music-icon:not(.mute)');
-    const muteIcon = btn.querySelector('.music-icon.mute');
+    const playIcon = btn.querySelector('.play-icon');
+    const pauseIcon = btn.querySelector('.pause-icon');
     
     if (!audio) {
         // Gerçek müzik eklemek için:
@@ -132,11 +130,11 @@ function toggleMusic() {
         
         if (isMusicPlaying) {
             playIcon.style.display = 'none';
-            muteIcon.style.display = 'block';
+            pauseIcon.style.display = 'block';
             btn.classList.add('playing');
         } else {
             playIcon.style.display = 'block';
-            muteIcon.style.display = 'none';
+            pauseIcon.style.display = 'none';
             btn.classList.remove('playing');
         }
         return;
@@ -145,12 +143,12 @@ function toggleMusic() {
     if (isMusicPlaying) {
         audio.pause();
         playIcon.style.display = 'block';
-        muteIcon.style.display = 'none';
+        pauseIcon.style.display = 'none';
         btn.classList.remove('playing');
     } else {
         audio.play();
         playIcon.style.display = 'none';
-        muteIcon.style.display = 'block';
+        pauseIcon.style.display = 'block';
         btn.classList.add('playing');
     }
     isMusicPlaying = !isMusicPlaying;
@@ -177,21 +175,10 @@ document.querySelectorAll(".card").forEach(card => {
     // Mouse hover - Logo rengi değişimi
     card.addEventListener("mouseenter", () => {
         if (icon && originalColor) {
+            // Önce beyazdan arındır
+            icon.style.filter = 'none';
+            // Sonra renkli yap
             icon.style.filter = `drop-shadow(0 0 0 ${originalColor})`;
-            // Renkli hale getir
-            icon.style.filter = `brightness(0) saturate(100%) invert(0%) sepia(100%) hue-rotate(0deg)`;
-            // Özel renk uygula
-            icon.style.color = originalColor;
-            icon.style.filter = `drop-shadow(0 0 0 ${originalColor})`;
-            // CSS filter ile renklendirme
-            const tempDiv = document.createElement('div');
-            tempDiv.style.color = originalColor;
-            document.body.appendChild(tempDiv);
-            const color = getComputedStyle(tempDiv).color;
-            document.body.removeChild(tempDiv);
-            
-            // SVG'yi renklendir
-            icon.style.filter = `brightness(0) saturate(100%) invert(0%) sepia(100%)`;
             icon.style.color = originalColor;
         }
     });
@@ -204,16 +191,6 @@ document.querySelectorAll(".card").forEach(card => {
         }
     });
 });
-
-// Renk değerinden hue rotation hesaplama (alternatif yöntem)
-function hexToRgb(hex) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
-}
 </script>
 
 </body>
