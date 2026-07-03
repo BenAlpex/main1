@@ -184,15 +184,14 @@ function toggleMusic() {
     const pauseIcon = btn.querySelector('.pause-icon');
     
     if (!audio) {
-        // 🎵 MÜZİK DOSYASI - public/muzik.mp3
-        audio = new Audio('/muzik.mp3');
+        // 🎵 MÜZİK DOSYASI - ANA DİZİNDE (index.html ile aynı yerde)
+        audio = new Audio('muzik.mp3');  // ← BAŞINDAKİ / işaretini kaldırdım
         audio.loop = true;
         audio.volume = 0.2;
         
-        // Hata yönetimi
         audio.onerror = function() {
-            console.log('Müzik dosyası bulunamadı! /public/muzik.mp3');
-            alert('Müzik dosyası bulunamadı! Lütfen public klasörüne muzik.mp3 ekleyin.');
+            console.log('Müzik dosyası bulunamadı! muzik.mp3');
+            alert('Müzik dosyası bulunamadı! Lütfen muzik.mp3 dosyasını ana dizine ekleyin.');
         };
     }
     
