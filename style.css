@@ -44,11 +44,8 @@ body {
 
 .splash-logo {
   font-size: 4rem;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, #6C63FF, #00D4FF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-bottom: 16px;
+  color: #6C63FF;
   animation: splashSpin 4s linear infinite;
 }
 
@@ -64,21 +61,21 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .splash-sub {
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.9rem;
   font-weight: 300;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   margin-bottom: 30px;
 }
 
 .splash-btn {
-  padding: 16px 48px;
-  font-size: 1.1rem;
-  font-weight: 700;
+  padding: 14px 40px;
+  font-size: 1rem;
+  font-weight: 600;
   color: #fff;
   background: linear-gradient(135deg, #6C63FF, #00D4FF);
   border: none;
@@ -216,30 +213,47 @@ body {
   }
 }
 
-/* ===== MÜZİK BUTONU ===== */
-#musicBtn {
+/* ===== MÜZİK KONTROLLERİ ===== */
+#musicControls {
   position: fixed;
   top: 24px;
   left: 24px;
   z-index: 10;
-  width: 48px;
-  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  padding: 6px 16px 6px 6px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#musicControls:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+#musicBtn {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  flex-shrink: 0;
 }
 
 #musicBtn svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   transition: all 0.4s;
 }
 
@@ -259,6 +273,51 @@ body {
 
 #musicBtn.playing svg {
   color: #00D4FF;
+}
+
+/* ===== SES SEVİYE ÇUBUĞU ===== */
+#volumeSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 3px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+#volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #6C63FF;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+}
+
+#volumeSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 30px rgba(108, 99, 255, 0.5);
+}
+
+#volumeSlider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #6C63FF;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+}
+
+#volumeSlider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 30px rgba(108, 99, 255, 0.5);
 }
 
 /* ===== CENTER UI ===== */
@@ -370,16 +429,25 @@ body {
     height: 34px;
   }
   
-  #musicBtn {
+  #musicControls {
     top: 16px;
     left: 16px;
-    width: 40px;
-    height: 40px;
+    padding: 4px 12px 4px 4px;
+    gap: 8px;
+  }
+  
+  #musicBtn {
+    width: 34px;
+    height: 34px;
   }
   
   #musicBtn svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  #volumeSlider {
+    width: 60px;
   }
 
   .splash-title {
@@ -411,16 +479,30 @@ body {
     height: 30px;
   }
   
-  #musicBtn {
+  #musicControls {
     top: 12px;
     left: 12px;
-    width: 36px;
-    height: 36px;
+    padding: 3px 10px 3px 3px;
+    gap: 6px;
+  }
+  
+  #musicBtn {
+    width: 30px;
+    height: 30px;
   }
   
   #musicBtn svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
+  }
+  
+  #volumeSlider {
+    width: 50px;
+  }
+  
+  #volumeSlider::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
   }
 
   .splash-title {
