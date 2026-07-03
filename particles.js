@@ -38,7 +38,7 @@ function resize() {
 function draw() {
   ctx.clearRect(0, 0, c.width, c.height);
 
-  // ===== PARTİKÜLLERİ ÇİZ =====
+  // Partikülleri çiz
   particles.forEach(p => {
     const dx = mouse.x - p.x;
     const dy = mouse.y - p.y;
@@ -70,7 +70,7 @@ function draw() {
     ctx.shadowBlur = 0;
   });
 
-  // ===== ÇİZGİ BAĞLANTILARI =====
+  // Çizgi bağlantıları
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
       const dx = particles[i].x - particles[j].x;
