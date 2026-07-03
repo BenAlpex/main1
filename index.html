@@ -2,81 +2,79 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Dijital Portfolyo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dijital Portfolyo</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+<!-- MOUSE GLOW -->
 <div class="mouse-glow" id="glow"></div>
 
 <!-- PARTICLES -->
 <canvas id="particles"></canvas>
-  
+
 <!-- LOGO -->
-<div class="logo">✦ @kullaniciadiniz ✦</div>
+<div class="logo">
+  <h1>✦ @kullaniciadiniz ✦</h1>
+  <div class="badge">⚡ Dijital Dünyada</div>
+</div>
 
 <!-- SUBTITLE -->
 <div class="subtitle">
-  <span>⚡ Dijital İçerik Üreticisi · Oyun & Teknoloji ⚡</span>
+  <p>
+    <span class="emoji">🚀</span> 
+    İçerik Üreticisi · Oyun · Teknoloji 
+    <span class="emoji">🎮</span>
+  </p>
 </div>
 
 <!-- MÜZİK BUTONU -->
-<button id="musicBtn" onclick="toggleMusic()">🔊</button>
+<button id="musicBtn" onclick="toggleMusic()">🎵</button>
 
-<!-- CENTER UI -->
+<!-- CARDS -->
 <div class="center-ui">
   <div class="cards">
 
-    <!-- Discord -->
     <div class="card" onclick="go('https://discord.com/users/senin-id')">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg" 
-           onerror="this.src='https://cdn-icons-png.flaticon.com/512/5968/5968968.png'">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968968.png" alt="Discord">
       <span>Discord</span>
     </div>
 
-    <!-- TikTok -->
     <div class="card" onclick="go('https://tiktok.com/@senin-kullanici')">
-      <img src="https://cdn-icons-png.flaticon.com/512/3116/3116491.png">
+      <img src="https://cdn-icons-png.flaticon.com/512/3116/3116491.png" alt="TikTok">
       <span>TikTok</span>
     </div>
 
-    <!-- Instagram -->
     <div class="card" onclick="go('https://instagram.com/senin-kullanici')">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Instagram">
       <span>Instagram</span>
     </div>
 
-    <!-- YouTube -->
     <div class="card" onclick="go('https://youtube.com/@senin-kanal')">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384012.png">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384012.png" alt="YouTube">
       <span>YouTube</span>
     </div>
 
-    <!-- Steam - DOĞRU LOGO -->
     <div class="card" onclick="go('https://steamcommunity.com/id/senin-id')">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/steam/steam-original.svg"
-           onerror="this.src='https://cdn-icons-png.flaticon.com/512/2111/2111628.png'">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111628.png" alt="Steam">
       <span>Steam</span>
     </div>
 
-    <!-- Roblox -->
     <div class="card" onclick="go('https://roblox.com/users/senin-id')">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968979.png">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968979.png" alt="Roblox">
       <span>Roblox</span>
     </div>
 
-    <!-- Spotify - DOĞRU LOGO -->
     <div class="card" onclick="go('https://open.spotify.com/user/senin-id')">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spotify/spotify-original.svg"
-           onerror="this.src='https://cdn-icons-png.flaticon.com/512/2111/2111620.png'">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111620.png" alt="Spotify">
       <span>Spotify</span>
     </div>
 
-    <!-- GitHub -->
     <div class="card" onclick="go('https://github.com/senin-kullanici')">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-           onerror="this.src='https://cdn-icons-png.flaticon.com/512/733/733553.png'">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
       <span>GitHub</span>
     </div>
 
@@ -85,11 +83,13 @@
 
 <script src="bg.js"></script>
 <script src="particles.js"></script>
-<script>
-// Link açma
-function go(url){ window.open(url,"_blank"); }
 
-// Müzik kontrolü
+<script>
+function go(url) {
+  window.open(url, "_blank");
+}
+
+// MÜZİK KONTROLÜ
 let isMusicPlaying = false;
 let audio = null;
 
@@ -97,45 +97,44 @@ function toggleMusic() {
   const btn = document.getElementById('musicBtn');
   
   if (!audio) {
-    // Gerçek müzik için:
-    // audio = new Audio('/muzik.mp3');
+    // Gerçek müzik eklemek için:
+    // audio = new Audio('/assets/muzik.mp3');
     // audio.loop = true;
-    // audio.volume = 0.5;
+    // audio.volume = 0.3;
     
-    // Demo
-    btn.textContent = isMusicPlaying ? '🔊' : '🔇';
+    btn.textContent = isMusicPlaying ? '🎵' : '🔊';
     isMusicPlaying = !isMusicPlaying;
-    btn.style.transform = isMusicPlaying ? 'scale(1.1) rotate(90deg)' : '';
     return;
   }
   
   if (isMusicPlaying) {
     audio.pause();
-    btn.textContent = '🔊';
+    btn.textContent = '🎵';
   } else {
     audio.play();
-    btn.textContent = '🔇';
+    btn.textContent = '🔊';
   }
   isMusicPlaying = !isMusicPlaying;
-  btn.style.transform = isMusicPlaying ? 'scale(1.1) rotate(90deg)' : '';
 }
 
-// 3D Tilt
+// 3D TİLT EFECT
 document.querySelectorAll(".card").forEach(card => {
   card.addEventListener("mousemove", e => {
     const r = card.getBoundingClientRect();
-    const x = e.clientX - r.left - r.width/2;
-    const y = e.clientY - r.top - r.height/2;
-    card.style.transform =
-      `rotateY(${x/12}deg) rotateX(${-y/12}deg) translateY(-8px) scale(1.02)`;
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    card.style.transform = `
+      rotateY(${x / 15}deg) 
+      rotateX(${-y / 15}deg) 
+      translateY(-6px) 
+      scale(1.03)
+    `;
   });
 
   card.addEventListener("mouseleave", () => {
     card.style.transform = "translateY(0) scale(1)";
   });
 });
-
-// Mousemove için glow takibi (bg.js zaten var)
 </script>
 
 </body>
