@@ -184,16 +184,16 @@ function toggleMusic() {
     const pauseIcon = btn.querySelector('.pause-icon');
     
     if (!audio) {
-        // 🎵 GITHUB RAW LİNKİ (Kopyaladığın URL'yi buraya yapıştır)
-        const musicURL = 'https://raw.githubusercontent.com/BenAlpex/main1/refs/heads/main/Kangren.mp3';
+        // 🎵 YENİ LİNK
+        const musicURL = 'https://raw.githubusercontent.com/BenAlpex/main1/main/muzik.mp3'; 
         
         audio = new Audio(musicURL);
         audio.loop = true;
         audio.volume = 0.2;
         
         audio.onerror = function() {
-            console.log('❌ Müzik yüklenemedi!');
-            alert('Müzik yüklenemedi! Linki kontrol edin.');
+            console.log('❌ Müzik yüklenemedi. Hata detayı:', audio.error);
+            alert('Müzik yüklenemedi! Lütfen konsolu kontrol edin.');
         };
         
         audio.oncanplay = function() {
