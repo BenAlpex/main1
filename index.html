@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Portfolio</title>
+<title>@kullaniciadiniz | Portfolyo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -13,31 +13,83 @@
 <!-- PARTICLES -->
 <canvas id="particles"></canvas>
   
-<!-- LOGO -->
-<div class="logo">YOUR NAME</div>
+<!-- LOGO - Kullanıcı Adı -->
+<div class="logo">@kullaniciadiniz</div>
+
+<!-- Açıklama Metni -->
+<div class="subtitle">🎮 İçerik Üreticisi | Oyun & Müzik</div>
+
+<!-- MÜZİK BUTONU (Sağ üst) -->
+<button id="musicBtn" onclick="toggleMusic()" style="
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100,150,255,0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(100,150,255,0.2);
+  transition: all 0.3s;
+  color: #1a1a2e;
+">
+  🔊
+</button>
 
 <!-- CENTER UI -->
 <div class="center-ui">
   <div class="cards">
 
-    <div class="card" onclick="go('https://discord.com')">
+    <!-- Discord -->
+    <div class="card" onclick="go('https://discord.com/users/senin-id')">
       <img src="https://cdn-icons-png.flaticon.com/512/5968/5968968.png">
       <span>Discord</span>
     </div>
 
-    <div class="card" onclick="go('https://tiktok.com')">
+    <!-- TikTok -->
+    <div class="card" onclick="go('https://tiktok.com/@senin-kullanici')">
       <img src="https://cdn-icons-png.flaticon.com/512/3116/3116491.png">
       <span>TikTok</span>
     </div>
 
-    <div class="card" onclick="go('https://instagram.com')">
+    <!-- Instagram -->
+    <div class="card" onclick="go('https://instagram.com/senin-kullanici')">
       <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png">
       <span>Instagram</span>
     </div>
 
-    <div class="card" onclick="go('https://youtube.com')">
+    <!-- YouTube -->
+    <div class="card" onclick="go('https://youtube.com/@senin-kanal')">
       <img src="https://cdn-icons-png.flaticon.com/512/1384/1384012.png">
       <span>YouTube</span>
+    </div>
+
+    <!-- Steam -->
+    <div class="card" onclick="go('https://steamcommunity.com/id/senin-id')">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968970.png">
+      <span>Steam</span>
+    </div>
+
+    <!-- Roblox -->
+    <div class="card" onclick="go('https://roblox.com/users/senin-id')">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968979.png">
+      <span>Roblox</span>
+    </div>
+
+    <!-- Spotify -->
+    <div class="card" onclick="go('https://open.spotify.com/user/senin-id')">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111620.png">
+      <span>Spotify</span>
+    </div>
+
+    <!-- GitHub (Ekstra) -->
+    <div class="card" onclick="go('https://github.com/senin-kullanici')">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png">
+      <span>GitHub</span>
     </div>
 
   </div>
@@ -46,17 +98,45 @@
 <script src="bg.js"></script>
 <script src="particles.js"></script>
 <script>
+// Link açma fonksiyonu
 function go(url){ window.open(url,"_blank"); }
-</script>
 
-  <script>
+// Müzik kontrolü
+let isMusicPlaying = false;
+let audio = null;
+
+function toggleMusic() {
+  const btn = document.getElementById('musicBtn');
+  
+  if (!audio) {
+    // Gerçek müzik dosyası ekleyebilirsiniz
+    // audio = new Audio('/muzik.mp3');
+    // audio.loop = true;
+    
+    // Demo: Ses yoksa butonu değiştir
+    btn.textContent = isMusicPlaying ? '🔇' : '🔊';
+    isMusicPlaying = !isMusicPlaying;
+    return;
+  }
+  
+  if (isMusicPlaying) {
+    audio.pause();
+    btn.textContent = '🔊';
+  } else {
+    audio.play();
+    btn.textContent = '🔇';
+  }
+  isMusicPlaying = !isMusicPlaying;
+}
+
+// 3D Tilt efekti
 document.querySelectorAll(".card").forEach(card => {
   card.addEventListener("mousemove", e => {
     const r = card.getBoundingClientRect();
     const x = e.clientX - r.left - r.width/2;
     const y = e.clientY - r.top - r.height/2;
     card.style.transform =
-      `rotateY(${x/15}deg) rotateX(${-y/15}deg) scale(1.08)`;
+      `rotateY(${x/20}deg) rotateX(${-y/20}deg) scale(1.06)`;
   });
 
   card.addEventListener("mouseleave", () => {
