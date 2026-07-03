@@ -137,13 +137,13 @@ body {
   transition: width 0.3s ease;
 }
 
-/* Yüklenme yazısı */
 .splash-loading-text {
   color: rgba(255, 255, 255, 0.2);
   font-size: 0.8rem;
   margin-top: 12px;
   letter-spacing: 1px;
 }
+
 /* ===== ANA SAYFA ===== */
 #mainContent {
   width: 100%;
