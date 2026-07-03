@@ -6,7 +6,7 @@
 
 body {
   height: 100vh;
-  background: #0a0a12;
+  background: #0a0a0a;
   overflow: hidden;
   font-family: 'Inter', -apple-system, sans-serif;
   color: #fff;
@@ -18,7 +18,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #0a0a12;
+  background: #0a0a0a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,7 +45,7 @@ body {
 .splash-logo {
   font-size: 4rem;
   margin-bottom: 16px;
-  color: #6C63FF;
+  color: #ffffff;
   animation: splashSpin 4s linear infinite;
 }
 
@@ -57,7 +57,7 @@ body {
 .splash-title {
   font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #fff 0%, #6C63FF 40%, #00D4FF 100%);
+  background: linear-gradient(135deg, #fff 0%, #888 50%, #333 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -77,7 +77,7 @@ body {
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(135deg, #6C63FF, #00D4FF);
+  background: linear-gradient(135deg, #555, #222);
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -86,7 +86,7 @@ body {
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 40px rgba(108, 99, 255, 0.2);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
 }
 
 .splash-btn.active {
@@ -96,14 +96,14 @@ body {
 
 .splash-btn.active:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 80px rgba(108, 99, 255, 0.4);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.1);
 }
 
 .splash-btn::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #00D4FF, #6C63FF);
+  background: linear-gradient(135deg, #888, #333);
   opacity: 0;
   transition: opacity 0.4s;
 }
@@ -129,7 +129,7 @@ body {
 .loader-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #6C63FF, #00D4FF);
+  background: linear-gradient(90deg, #888, #fff);
   border-radius: 10px;
   transition: width 0.3s ease;
 }
@@ -154,8 +154,8 @@ body {
   height: 600px;
   background: radial-gradient(
     circle,
-    rgba(108, 99, 255, 0.06) 0%,
-    rgba(0, 212, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
     transparent 70%
   );
   pointer-events: none;
@@ -187,17 +187,17 @@ body {
   font-size: 2.6rem;
   font-weight: 800;
   letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #fff 0%, #6C63FF 40%, #00D4FF 100%);
+  background: linear-gradient(135deg, #fff 0%, #888 40%, #555 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 40px rgba(108, 99, 255, 0.15));
+  filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.05));
 }
 
 .subtitle {
   margin-top: 6px;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.35);
   font-weight: 300;
   letter-spacing: 0.5px;
 }
@@ -222,26 +222,26 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px);
   padding: 6px 16px 6px 6px;
   border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 #musicControls:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 #musicBtn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
@@ -258,21 +258,21 @@ body {
 }
 
 #musicBtn:hover {
-  background: rgba(108, 99, 255, 0.12);
-  border-color: rgba(108, 99, 255, 0.2);
-  color: #6C63FF;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
   transform: scale(1.1);
-  box-shadow: 0 0 40px rgba(108, 99, 255, 0.1);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
 }
 
 #musicBtn.playing {
-  border-color: rgba(0, 212, 255, 0.3);
-  color: #00D4FF;
-  box-shadow: 0 0 40px rgba(0, 212, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
 }
 
 #musicBtn.playing svg {
-  color: #00D4FF;
+  color: #fff;
 }
 
 /* ===== SES SEVİYE ÇUBUĞU ===== */
@@ -282,7 +282,7 @@ body {
   width: 80px;
   height: 3px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   outline: none;
   transition: all 0.3s;
   cursor: pointer;
@@ -294,30 +294,30 @@ body {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #6C63FF;
+  background: #fff;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 #volumeSlider::-webkit-slider-thumb:hover {
   transform: scale(1.15);
-  box-shadow: 0 0 30px rgba(108, 99, 255, 0.5);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
 }
 
 #volumeSlider::-moz-range-thumb {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #6C63FF;
+  background: #fff;
   cursor: pointer;
   border: none;
-  box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 #volumeSlider::-moz-range-thumb:hover {
   transform: scale(1.15);
-  box-shadow: 0 0 30px rgba(108, 99, 255, 0.5);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
 }
 
 /* ===== CENTER UI ===== */
@@ -342,13 +342,13 @@ body {
 /* ===== CARD ===== */
 .card {
   position: relative;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(20px);
   border-radius: 18px;
   padding: 20px 12px 16px;
   text-align: center;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.03);
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform-style: preserve-3d;
   perspective: 800px;
@@ -358,11 +358,11 @@ body {
 
 .card:hover {
   transform: translateY(-6px) scale(1.04);
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.06);
   box-shadow: 
     0 20px 60px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(108, 99, 255, 0.04);
+    0 0 40px rgba(255, 255, 255, 0.02);
 }
 
 /* ===== CARD ICON ===== */
@@ -385,12 +385,17 @@ body {
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* Hover'da logo gri oluyor */
+.card:hover .card-icon img {
+  filter: brightness(0) invert(0.6);
+}
+
 /* ===== CARD TEXT ===== */
 .card span {
   display: block;
   font-size: 0.7rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.25);
   transform: translateZ(15px);
   transition: all 0.3s;
   letter-spacing: 0.5px;
@@ -398,7 +403,7 @@ body {
 }
 
 .card:hover span {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* ===== RESPONSIVE ===== */
