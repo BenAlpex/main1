@@ -21,9 +21,17 @@
     <div class="subtitle">🚀 Dijital İçerik Üreticisi · Oyun & Teknoloji</div>
 </div>
 
-<!-- ===== MÜZİK BUTONU ===== -->
+<!-- ===== MÜZİK BUTONU - SOL ÜST ===== -->
 <button id="musicBtn" onclick="toggleMusic()">
-    <span class="music-icon">♪</span>
+    <svg class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <!-- Ses dalgası ikonu -->
+        <path d="M3 18V12M7 18V6M11 18V9M15 18V3M19 18V15" stroke-linecap="round"/>
+    </svg>
+    <svg class="music-icon mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+        <!-- Sessiz ikonu -->
+        <path d="M3 18V12M7 18V6M11 18V9M15 18V3M19 18V15" stroke-linecap="round"/>
+        <path d="M20 8L14 14M14 8L20 14" stroke-linecap="round"/>
+    </svg>
 </button>
 
 <!-- ===== CARDS ===== -->
@@ -31,7 +39,7 @@
     <div class="cards">
 
         <!-- Discord -->
-        <div class="card" data-color="#5865F2" onclick="go('https://discord.com/users/senin-id')">
+        <div class="card" data-color="rgba(33, 79, 153, 0.8)" onclick="go('https://discord.com/users/senin-id')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
             </div>
@@ -39,7 +47,7 @@
         </div>
 
         <!-- TikTok -->
-        <div class="card" data-color="#000000" onclick="go('https://tiktok.com/@senin-kullanici')">
+        <div class="card" data-color="rgba(205, 205, 205, 1)" onclick="go('https://tiktok.com/@senin-kullanici')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" alt="TikTok">
             </div>
@@ -47,7 +55,7 @@
         </div>
 
         <!-- Instagram -->
-        <div class="card" data-color="#E4405F" onclick="go('https://instagram.com/senin-kullanici')">
+        <div class="card" data-color="rgba(129, 0, 125, 0.8)" onclick="go('https://instagram.com/senin-kullanici')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
             </div>
@@ -55,7 +63,7 @@
         </div>
 
         <!-- YouTube -->
-        <div class="card" data-color="#FF0000" onclick="go('https://youtube.com/@senin-kanal')">
+        <div class="card" data-color="rgba(128, 0, 0, 1)" onclick="go('https://youtube.com/@senin-kanal')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
             </div>
@@ -71,7 +79,7 @@
         </div>
 
         <!-- Roblox -->
-        <div class="card" data-color="#00B0F0" onclick="go('https://roblox.com/users/senin-id')">
+        <div class="card" data-color="rgba(144, 144, 144, 1)" onclick="go('https://roblox.com/users/senin-id')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" alt="Roblox">
             </div>
@@ -79,7 +87,7 @@
         </div>
 
         <!-- Spotify -->
-        <div class="card" data-color="#1DB954" onclick="go('https://open.spotify.com/user/senin-id')">
+        <div class="card" data-color="rgba(0, 176, 79, 1)" onclick="go('https://open.spotify.com/user/senin-id')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/spotify.svg" alt="Spotify">
             </div>
@@ -87,7 +95,7 @@
         </div>
 
         <!-- GitHub -->
-        <div class="card" data-color="#ffffff" onclick="go('https://github.com/senin-kullanici')">
+        <div class="card" data-color="rgba(205, 205, 205, 1)" onclick="go('https://github.com/senin-kullanici')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
             </div>
@@ -105,38 +113,50 @@ function go(url) {
     window.open(url, "_blank");
 }
 
-// MÜZİK KONTROLÜ
+// ===== MÜZİK KONTROLÜ =====
 let isMusicPlaying = false;
 let audio = null;
 
 function toggleMusic() {
     const btn = document.getElementById('musicBtn');
-    const icon = btn.querySelector('.music-icon');
-
+    const playIcon = btn.querySelector('.music-icon:not(.mute)');
+    const muteIcon = btn.querySelector('.music-icon.mute');
+    
     if (!audio) {
         // Gerçek müzik eklemek için:
         // audio = new Audio('/assets/muzik.mp3');
         // audio.loop = true;
         // audio.volume = 0.2;
-
+        
         isMusicPlaying = !isMusicPlaying;
-        icon.textContent = isMusicPlaying ? '♫' : '♪';
-        btn.classList.toggle('playing');
+        
+        if (isMusicPlaying) {
+            playIcon.style.display = 'none';
+            muteIcon.style.display = 'block';
+            btn.classList.add('playing');
+        } else {
+            playIcon.style.display = 'block';
+            muteIcon.style.display = 'none';
+            btn.classList.remove('playing');
+        }
         return;
     }
-
+    
     if (isMusicPlaying) {
         audio.pause();
-        icon.textContent = '♪';
+        playIcon.style.display = 'block';
+        muteIcon.style.display = 'none';
+        btn.classList.remove('playing');
     } else {
         audio.play();
-        icon.textContent = '♫';
+        playIcon.style.display = 'none';
+        muteIcon.style.display = 'block';
+        btn.classList.add('playing');
     }
     isMusicPlaying = !isMusicPlaying;
-    btn.classList.toggle('playing');
 }
 
-// 3D TİLT + HOVER RENK
+// ===== 3D TİLT + HOVER RENK =====
 document.querySelectorAll(".card").forEach(card => {
     const originalColor = card.dataset.color;
     const icon = card.querySelector('.card-icon img');
@@ -156,47 +176,43 @@ document.querySelectorAll(".card").forEach(card => {
 
     // Mouse hover - Logo rengi değişimi
     card.addEventListener("mouseenter", () => {
-        if (icon) {
-            icon.style.filter = `brightness(0) saturate(100%) invert(0%) sepia(100%) hue-rotate(0deg)`;
-            // SVG renklendirme için özel filter
+        if (icon && originalColor) {
             icon.style.filter = `drop-shadow(0 0 0 ${originalColor})`;
+            // Renkli hale getir
+            icon.style.filter = `brightness(0) saturate(100%) invert(0%) sepia(100%) hue-rotate(0deg)`;
+            // Özel renk uygula
             icon.style.color = originalColor;
-            // SVG'yi renklendirmek için
-            icon.style.filter = `invert(39%) sepia(89%) saturate(1000%) hue-rotate(${getHueRotation(originalColor)}deg) brightness(1.2)`;
+            icon.style.filter = `drop-shadow(0 0 0 ${originalColor})`;
+            // CSS filter ile renklendirme
+            const tempDiv = document.createElement('div');
+            tempDiv.style.color = originalColor;
+            document.body.appendChild(tempDiv);
+            const color = getComputedStyle(tempDiv).color;
+            document.body.removeChild(tempDiv);
+            
+            // SVG'yi renklendir
+            icon.style.filter = `brightness(0) saturate(100%) invert(0%) sepia(100%)`;
+            icon.style.color = originalColor;
         }
     });
 
     card.addEventListener("mouseleave", () => {
         card.style.transform = "translateY(0) scale(1)";
         if (icon) {
-            icon.style.filter = "none";
+            icon.style.filter = "brightness(0) invert(1)";
             icon.style.color = "#ffffff";
         }
     });
 });
 
-// Renk değerinden hue rotation hesaplama
-function getHueRotation(hexColor) {
-    // RGB'ye çevir
-    const r = parseInt(hexColor.slice(1,3), 16);
-    const g = parseInt(hexColor.slice(3,5), 16);
-    const b = parseInt(hexColor.slice(5,7), 16);
-    
-    // HSL'ye çevir
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    let h = 0;
-    
-    if (max !== min) {
-        const d = max - min;
-        if (max === r) h = ((g - b) / d) % 6;
-        else if (max === g) h = (2 + (b - r) / d);
-        else h = (4 + (r - g) / d);
-        h *= 60;
-        if (h < 0) h += 360;
-    }
-    
-    return h;
+// Renk değerinden hue rotation hesaplama (alternatif yöntem)
+function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 }
 </script>
 
