@@ -184,8 +184,8 @@ function toggleMusic() {
     const pauseIcon = btn.querySelector('.pause-icon');
     
     if (!audio) {
-        // 🎵 GOOGLE DRİVE LİNKİ
-        const musicURL = 'https://drive.google.com/uc?export=download&id=1DTNAl2I5aRXhya__3rtDcOR6hyxE_ClN';
+        // 🎵 GITHUB RAW LİNKİ (Kopyaladığın URL'yi buraya yapıştır)
+        const musicURL = 'https://raw.githubusercontent.com/BenAlpex/main1/refs/heads/main/Kangren.mp3';
         
         audio = new Audio(musicURL);
         audio.loop = true;
@@ -193,7 +193,7 @@ function toggleMusic() {
         
         audio.onerror = function() {
             console.log('❌ Müzik yüklenemedi!');
-            alert('Müzik yüklenemedi! Dosya herkese açık mı?');
+            alert('Müzik yüklenemedi! Linki kontrol edin.');
         };
         
         audio.oncanplay = function() {
@@ -209,7 +209,6 @@ function toggleMusic() {
     } else {
         audio.play().catch(e => {
             console.log('Müzik çalınamadı:', e);
-            alert('Müzik çalınamadı! Drive linkini kontrol edin.');
         });
         playIcon.style.display = 'none';
         pauseIcon.style.display = 'block';
