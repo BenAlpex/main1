@@ -1,5 +1,6 @@
 :root {
   --neon: #00ff9c;
+  --bg-light: #f0f4ff;
 }
 
 * {
@@ -10,49 +11,76 @@
 
 body {
   height: 100vh;
-  background: radial-gradient(circle at center, #042016, #000);
+  /* 🌟 Aydınlık arka plan */
+  background: radial-gradient(circle at center, #e8f0fe, #d4e0f7);
   overflow: hidden;
-  color: white;
+  color: #1a1a2e;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* PARTICLES */
+/* PARTICLES - Daha açık renk */
 #particles {
   position: fixed;
   inset: 0;
   z-index: 0;
 }
 
-/* MOUSE GLOW */
+/* MOUSE GLOW - Daha yumuşak renk */
 .mouse-glow {
   position: fixed;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(0,255,156,.18), transparent 60%);
+  background: radial-gradient(circle, rgba(100, 150, 255, 0.15), transparent 60%);
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 1;
   filter: blur(25px);
 }
 
-/* LOGO */
+/* LOGO - Kullanıcı adı için */
 .logo {
   position: absolute;
-  top: 12%;
+  top: 8%;
   width: 100%;
   text-align: center;
-  font-size: 3rem;
-  letter-spacing: 6px;
-  color: var(--neon);
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+  color: #1a1a2e;
   opacity: 0;
   animation: logoIn 1.6s ease forwards;
   z-index: 3;
+  font-weight: 700;
+}
+
+/* Açıklama metni */
+.subtitle {
+  position: absolute;
+  top: 18%;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  color: #4a4a6a;
+  z-index: 3;
+  opacity: 0;
+  animation: fadeInUp 1.8s ease 0.3s forwards;
+  padding: 0 20px;
 }
 
 @keyframes logoIn {
   to {
     opacity: 1;
-    text-shadow: 0 0 40px var(--neon);
+    text-shadow: 0 0 30px rgba(100, 150, 255, 0.3);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -66,51 +94,56 @@ body {
   align-items: center;
 }
 
-/* CARDS GRID */
+/* CARDS GRID - Daha fazla buton için */
 .cards {
   display: grid;
-  grid-template-columns: repeat(2, 240px);
-  gap: 30px;
+  grid-template-columns: repeat(4, 140px);
+  gap: 25px;
+  max-width: 900px;
+  padding: 20px;
 }
 
-/* CARD */
+/* CARD - Aydınlık tema */
 .card {
-  background: rgba(0,0,0,.75);
-  border-radius: 22px;
-  padding: 26px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px 15px;
   text-align: center;
   cursor: pointer;
-
-  border: 1px solid rgba(255,255,255,.05);
-  box-shadow: 0 0 40px rgba(0,255,156,.25);
-
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(100, 150, 255, 0.15);
   transition: transform .25s ease, box-shadow .25s ease;
-
-  /* 🔥 TILT İÇİN GEREKLİ */
   perspective: 800px;
   transform-style: preserve-3d;
 }
 
-/* HOVER */
 .card:hover {
-  box-shadow: 0 0 90px rgba(0,255,156,.55);
+  box-shadow: 0 8px 40px rgba(100, 150, 255, 0.3);
+  transform: translateY(-5px);
 }
 
 /* ICON */
 .card img {
-  width: 48px;
-  margin-bottom: 14px;
-  filter: drop-shadow(0 0 12px rgba(0,255,156,.6));
+  width: 42px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 2px 8px rgba(100, 150, 255, 0.2));
   transform: translateZ(25px);
 }
 
 /* BUTTON TEXT */
 .card span {
   display: inline-block;
-  margin-top: 6px;
-  color: var(--neon);
-  border: 1px solid var(--neon);
-  padding: 6px 16px;
-  border-radius: 14px;
+  font-size: 0.8rem;
+  color: #1a1a2e;
+  font-weight: 600;
+  background: rgba(100, 150, 255, 0.1);
+  padding: 4px 14px;
+  border-radius: 12px;
   transform: translateZ(20px);
+  transition: background 0.3s;
+}
+
+.card:hover span {
+  background: rgba(100, 150, 255, 0.2);
 }
