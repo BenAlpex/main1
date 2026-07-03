@@ -43,8 +43,9 @@ function draw() {
     if (o.x < 0 || o.x > c.width) o.vx *= -1;
     if (o.y < 0 || o.y > c.height) o.vy *= -1;
 
-    ctx.fillStyle = "rgba(0,255,156,.4)";
-    ctx.fillRect(o.x, o.y, 2, 2);
+    // 🌟 Açık renk parçacıklar
+    ctx.fillStyle = "rgba(100, 150, 255, 0.4)";
+    ctx.fillRect(o.x, o.y, 2.5, 2.5);
   });
 
   requestAnimationFrame(draw);
