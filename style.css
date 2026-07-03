@@ -161,36 +161,30 @@ body {
     0 0 40px rgba(108, 99, 255, 0.04);
 }
 
-/* ===== CARD ICON - BEYAZ LOGO ===== */
+/* ===== CARD ICON ===== */
 .card-icon {
   width: 44px;
   height: 44px;
   margin: 0 auto 10px;
   transform: translateZ(25px);
   transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card-icon svg {
+.card-icon img {
   width: 100%;
   height: 100%;
-  color: #ffffff;
-  transition: all 0.4s;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Hover'da logo renkleniyor */
-.card:hover .card-icon svg {
-  filter: drop-shadow(0 0 20px rgba(108, 99, 255, 0.3));
+/* Hover'da logo renkleniyor - JavaScript ile kontrol edilecek */
+.card:hover .card-icon img {
+  /* JavaScript burayı yönetecek */
 }
-
-/* Her buton için farklı hover rengi */
-.card:nth-child(1):hover .card-icon svg { color: #5865F2; }
-.card:nth-child(2):hover .card-icon svg { color: #00f2ea; }
-.card:nth-child(3):hover .card-icon svg { color: #E4405F; }
-.card:nth-child(4):hover .card-icon svg { color: #FF0000; }
-.card:nth-child(5):hover .card-icon svg { color: #1B2838; }
-.card:nth-child(6):hover .card-icon svg { color: #00B0F0; }
-.card:nth-child(7):hover .card-icon svg { color: #1DB954; }
-.card:nth-child(8):hover .card-icon svg { color: #f5f5f5; }
 
 /* ===== CARD TEXT ===== */
 .card span {
