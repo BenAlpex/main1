@@ -34,10 +34,22 @@
     <!-- PARTICLES -->
     <canvas id="particles"></canvas>
 
-    <!-- HEADER -->
+    <!-- ===== HEADER ===== -->
     <div class="header">
         <div class="logo">✦ @kullaniciadiniz ✦</div>
-        <div class="subtitle">🚀 Dijital İçerik Üreticisi · Oyun & Teknoloji</div>
+        <div class="bio">
+            <p>Merhaba! Ben Alpex. 🎮</p>
+            <p>İstanbul'da yaşıyorum. Oyun oynamayı, müzik dinlemeyi ve yeni şeyler keşfetmeyi seviyorum.</p>
+            <p>💻 Web tasarım · 🎨 Grafik · 📹 Video düzenleme</p>
+            <div class="hobbies">
+                <span>🎮 Oyun</span>
+                <span>🎵 Müzik</span>
+                <span>📸 Fotoğraf</span>
+                <span>✈️ Seyahat</span>
+                <span>📚 Kitap</span>
+                <span>💻 Teknoloji</span>
+            </div>
+        </div>
     </div>
 
     <!-- ===== MÜZİK KONTROLLERİ ===== -->
@@ -51,12 +63,18 @@
                 <rect x="14" y="4" width="4" height="16" />
             </svg>
         </button>
-        
-        <!-- SES SEVİYE ÇUBUĞU -->
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.2">
     </div>
 
-    <!-- CARDS -->
+    <!-- ===== ZİYARETÇİ SAYACI ===== -->
+    <div class="counter-container">
+        <a href="https://www.flagcounter.com/">
+            <img src="https://s01.flagcounter.com/count2/XXXXX/bg=000000/txt=FFFFFF/border=FFFFFF/columns=1/maxflags=1/viewers=0/labels=0/" alt="Ziyaretçi Sayacı">
+        </a>
+        <span class="counter-label">👤 Ziyaretçi</span>
+    </div>
+
+    <!-- ===== CARDS ===== -->
     <div class="center-ui">
         <div class="cards">
 
@@ -115,6 +133,15 @@
                 </div>
                 <span>Spotify</span>
             </div>
+
+            <!-- GitHub -->
+            <div class="card" data-color="rgba(205, 205, 205, 1)" onclick="go('https://github.com/senin-kullanici')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
+                </div>
+                <span>GitHub</span>
+            </div>
+
         </div>
     </div>
 
@@ -136,7 +163,7 @@ const loadInterval = setInterval(() => {
         clearInterval(loadInterval);
         enterBtn.classList.add('active');
         loadingText.textContent = '✨ Hazır!';
-        loadingText.style.color = 'rgba(108, 99, 255, 0.6)';
+        loadingText.style.color = 'rgba(255, 255, 255, 0.6)';
     }
     loaderBar.style.width = progress + '%';
     if (progress < 100) {
@@ -210,16 +237,16 @@ function startMusic() {
             if (audio) {
                 audio.volume = parseFloat(this.value);
                 const percent = (this.value / this.max) * 100;
-                this.style.background = `linear-gradient(to right, #6C63FF 0%, #6C63FF ${percent}%, rgba(255,255,255,0.1) ${percent}%)`;
+                this.style.background = `linear-gradient(to right, #fff 0%, #fff ${percent}%, rgba(255,255,255,0.1) ${percent}%)`;
             }
         });
         
         // Başlangıç ses seviyesini ayarla
         setTimeout(() => {
             const volumeSlider = document.getElementById('volumeSlider');
-            volumeSlider.value = 0.5;
-            const percent = (0.5 / 1) * 100;
-            volumeSlider.style.background = `linear-gradient(to right, #6C63FF 0%, #6C63FF ${percent}%, rgba(255,255,255,0.1) ${percent}%)`;
+            volumeSlider.value = 0.2;
+            const percent = (0.2 / 1) * 100;
+            volumeSlider.style.background = `linear-gradient(to right, #fff 0%, #fff ${percent}%, rgba(255,255,255,0.1) ${percent}%)`;
         }, 100);
     }
 }
