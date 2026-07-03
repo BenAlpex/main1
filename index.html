@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>@kullaniciadiniz | Portfolyo</title>
+<title>Dijital Portfolyo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -13,32 +13,16 @@
 <!-- PARTICLES -->
 <canvas id="particles"></canvas>
   
-<!-- LOGO - Kullanıcı Adı -->
-<div class="logo">@kullaniciadiniz</div>
+<!-- LOGO -->
+<div class="logo">✦ @kullaniciadiniz ✦</div>
 
-<!-- Açıklama Metni -->
-<div class="subtitle">🎮 İçerik Üreticisi | Oyun & Müzik</div>
+<!-- SUBTITLE -->
+<div class="subtitle">
+  <span>⚡ Dijital İçerik Üreticisi · Oyun & Teknoloji ⚡</span>
+</div>
 
-<!-- MÜZİK BUTONU (Sağ üst) -->
-<button id="musicBtn" onclick="toggleMusic()" style="
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 10;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(100,150,255,0.2);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(100,150,255,0.2);
-  transition: all 0.3s;
-  color: #1a1a2e;
-">
-  🔊
-</button>
+<!-- MÜZİK BUTONU -->
+<button id="musicBtn" onclick="toggleMusic()">🔊</button>
 
 <!-- CENTER UI -->
 <div class="center-ui">
@@ -46,7 +30,8 @@
 
     <!-- Discord -->
     <div class="card" onclick="go('https://discord.com/users/senin-id')">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968968.png">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg" 
+           onerror="this.src='https://cdn-icons-png.flaticon.com/512/5968/5968968.png'">
       <span>Discord</span>
     </div>
 
@@ -68,9 +53,10 @@
       <span>YouTube</span>
     </div>
 
-    <!-- Steam -->
+    <!-- Steam - DOĞRU LOGO -->
     <div class="card" onclick="go('https://steamcommunity.com/id/senin-id')">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968970.png">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/steam/steam-original.svg"
+           onerror="this.src='https://cdn-icons-png.flaticon.com/512/2111/2111628.png'">
       <span>Steam</span>
     </div>
 
@@ -80,15 +66,17 @@
       <span>Roblox</span>
     </div>
 
-    <!-- Spotify -->
+    <!-- Spotify - DOĞRU LOGO -->
     <div class="card" onclick="go('https://open.spotify.com/user/senin-id')">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111620.png">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spotify/spotify-original.svg"
+           onerror="this.src='https://cdn-icons-png.flaticon.com/512/2111/2111620.png'">
       <span>Spotify</span>
     </div>
 
-    <!-- GitHub (Ekstra) -->
+    <!-- GitHub -->
     <div class="card" onclick="go('https://github.com/senin-kullanici')">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+           onerror="this.src='https://cdn-icons-png.flaticon.com/512/733/733553.png'">
       <span>GitHub</span>
     </div>
 
@@ -98,7 +86,7 @@
 <script src="bg.js"></script>
 <script src="particles.js"></script>
 <script>
-// Link açma fonksiyonu
+// Link açma
 function go(url){ window.open(url,"_blank"); }
 
 // Müzik kontrolü
@@ -109,13 +97,15 @@ function toggleMusic() {
   const btn = document.getElementById('musicBtn');
   
   if (!audio) {
-    // Gerçek müzik dosyası ekleyebilirsiniz
+    // Gerçek müzik için:
     // audio = new Audio('/muzik.mp3');
     // audio.loop = true;
+    // audio.volume = 0.5;
     
-    // Demo: Ses yoksa butonu değiştir
-    btn.textContent = isMusicPlaying ? '🔇' : '🔊';
+    // Demo
+    btn.textContent = isMusicPlaying ? '🔊' : '🔇';
     isMusicPlaying = !isMusicPlaying;
+    btn.style.transform = isMusicPlaying ? 'scale(1.1) rotate(90deg)' : '';
     return;
   }
   
@@ -127,22 +117,25 @@ function toggleMusic() {
     btn.textContent = '🔇';
   }
   isMusicPlaying = !isMusicPlaying;
+  btn.style.transform = isMusicPlaying ? 'scale(1.1) rotate(90deg)' : '';
 }
 
-// 3D Tilt efekti
+// 3D Tilt
 document.querySelectorAll(".card").forEach(card => {
   card.addEventListener("mousemove", e => {
     const r = card.getBoundingClientRect();
     const x = e.clientX - r.left - r.width/2;
     const y = e.clientY - r.top - r.height/2;
     card.style.transform =
-      `rotateY(${x/20}deg) rotateX(${-y/20}deg) scale(1.06)`;
+      `rotateY(${x/12}deg) rotateX(${-y/12}deg) translateY(-8px) scale(1.02)`;
   });
 
   card.addEventListener("mouseleave", () => {
-    card.style.transform = "scale(1)";
+    card.style.transform = "translateY(0) scale(1)";
   });
 });
+
+// Mousemove için glow takibi (bg.js zaten var)
 </script>
 
 </body>
