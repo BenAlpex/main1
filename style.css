@@ -175,12 +175,13 @@ body {
 /* ===== HEADER ===== */
 .header {
   position: fixed;
-  top: 6%;
+  top: 5%;
   width: 100%;
   text-align: center;
   z-index: 3;
   opacity: 0;
   animation: fadeDown 1.2s ease forwards;
+  padding: 0 20px;
 }
 
 .logo {
@@ -192,14 +193,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.05));
-}
-
-.subtitle {
-  margin-top: 6px;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.35);
-  font-weight: 300;
-  letter-spacing: 0.5px;
+  margin-bottom: 10px;
 }
 
 @keyframes fadeDown {
@@ -211,6 +205,62 @@ body {
     opacity: 0;
     transform: translateY(-20px);
   }
+}
+
+/* ===== BİO ===== */
+.bio {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.bio p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+}
+
+.bio p:first-child {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.bio p:last-of-type {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+/* ===== HOBİLER ===== */
+.hobbies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.hobbies span {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.hobbies span:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
 }
 
 /* ===== MÜZİK KONTROLLERİ ===== */
@@ -320,6 +370,41 @@ body {
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
 }
 
+/* ===== ZİYARETÇİ SAYACI ===== */
+.counter-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  padding: 8px 14px 8px 10px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.counter-container:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.counter-container img {
+  height: 20px;
+  width: auto;
+  border-radius: 2px;
+}
+
+.counter-label {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
 /* ===== CENTER UI ===== */
 .center-ui {
   position: relative;
@@ -418,11 +503,20 @@ body {
   }
   
   .header {
-    top: 4%;
+    top: 3%;
   }
   
-  .subtitle {
-    font-size: 0.75rem;
+  .bio p {
+    font-size: 0.85rem;
+  }
+  
+  .bio p:first-child {
+    font-size: 0.95rem;
+  }
+  
+  .hobbies span {
+    font-size: 0.7rem;
+    padding: 3px 10px;
   }
   
   .card {
@@ -467,6 +561,20 @@ body {
     padding: 12px 30px;
     font-size: 0.9rem;
   }
+
+  .counter-container {
+    bottom: 16px;
+    right: 16px;
+    padding: 6px 12px 6px 8px;
+  }
+  
+  .counter-container img {
+    height: 17px;
+  }
+  
+  .counter-label {
+    font-size: 0.65rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -482,6 +590,31 @@ body {
   .card-icon {
     width: 30px;
     height: 30px;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+  }
+  
+  .header {
+    top: 2%;
+  }
+  
+  .bio p {
+    font-size: 0.75rem;
+  }
+  
+  .bio p:first-child {
+    font-size: 0.85rem;
+  }
+  
+  .hobbies span {
+    font-size: 0.6rem;
+    padding: 2px 8px;
+  }
+  
+  .hobbies {
+    gap: 5px;
   }
   
   #musicControls {
@@ -525,5 +658,19 @@ body {
 
   .splash-logo {
     font-size: 2.5rem;
+  }
+
+  .counter-container {
+    bottom: 12px;
+    right: 12px;
+    padding: 5px 10px 5px 8px;
+  }
+  
+  .counter-container img {
+    height: 14px;
+  }
+  
+  .counter-label {
+    font-size: 0.6rem;
   }
 }
