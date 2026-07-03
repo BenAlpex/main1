@@ -4,7 +4,6 @@ document.addEventListener("mousemove", e => {
   glow.style.left = e.clientX + "px";
   glow.style.top = e.clientY + "px";
   
-  // Hareket edince glow büyüsün
   const speed = Math.abs(e.movementX) + Math.abs(e.movementY);
   if (speed > 15) {
     glow.style.width = "700px";
