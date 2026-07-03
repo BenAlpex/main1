@@ -15,10 +15,13 @@
         <div class="splash-logo">✦</div>
         <h1 class="splash-title">Dijital Portfolyo</h1>
         <p class="splash-sub">Hoş geldiniz</p>
-        <button id="enterBtn" class="splash-btn">Girmek için tıkla ✦</button>
+        <button id="enterBtn" class="splash-btn">
+            <span>✦ Girmek için tıkla ✦</span>
+        </button>
         <div class="splash-loader">
-            <div class="loader-bar"></div>
+            <div class="loader-bar" id="loaderBar"></div>
         </div>
+        <div class="splash-loading-text" id="loadingText">Yükleniyor...</div>
     </div>
 </div>
 
@@ -118,21 +121,25 @@
 const splashScreen = document.getElementById('splashScreen');
 const mainContent = document.getElementById('mainContent');
 const enterBtn = document.getElementById('enterBtn');
+const loaderBar = document.getElementById('loaderBar');
+const loadingText = document.getElementById('loadingText');
 
-// Otomatik yükleme çubuğu
 let progress = 0;
-const loaderBar = document.querySelector('.loader-bar');
-
 const loadInterval = setInterval(() => {
-    progress += Math.random() * 15;
+    progress += Math.random() * 10 + 5;
     if (progress > 100) {
         progress = 100;
         clearInterval(loadInterval);
         // Butonu aktif et
-        enterBtn.style.opacity = '1';
-        enterBtn.style.pointerEvents = 'auto';
+        enterBtn.classList.add('active');
+        loadingText.textContent = '✨ Hazır!';
+        loadingText.style.color = 'rgba(108, 99, 255, 0.6)';
     }
     loaderBar.style.width = progress + '%';
+    if (progress < 100) {
+        const dots = '.'.repeat(Math.floor(progress / 10) % 4);
+        loadingText.textContent = 'Yükleniyor' + dots;
+    }
 }, 200);
 
 // Giriş butonu
@@ -144,17 +151,16 @@ enterBtn.addEventListener('click', () => {
         // Ana sayfa animasyonu
         document.querySelector('.header').style.animation = 'fadeDown 1.2s ease forwards';
         document.querySelectorAll('.card').forEach((card, i) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
             setTimeout(() => {
                 card.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
-            }, 100 + (i * 80));
+            }, 200 + (i * 80));
         });
         // Particles başlat
         initParticles();
         initMouseGlow();
+        initCardEffects();
     }, 800);
 });
 
@@ -207,11 +213,6 @@ function toggleMusic() {
 }
 
 // ===== 3D TİLT + HOVER RENK =====
-document.addEventListener('DOMContentLoaded', () => {
-    // Ana sayfa gizli başlangıçta, card'lar sonra aktif olacak
-});
-
-// Card hover (girişten sonra aktif olacak)
 function initCardEffects() {
     document.querySelectorAll(".card").forEach(card => {
         const originalColor = card.dataset.color;
@@ -246,16 +247,7 @@ function initCardEffects() {
     });
 }
 
-// Girişten sonra card efektlerini başlat
-const observer = new MutationObserver(() => {
-    if (mainContent.style.display === 'block') {
-        initCardEffects();
-        observer.disconnect();
-    }
-});
-observer.observe(mainContent, { attributes: true, attributeFilter: ['style'] });
-
-// ===== PARTICLES (Girişten sonra başlatılacak) =====
+// ===== PARTICLES =====
 function initParticles() {
     const script = document.createElement('script');
     script.src = 'particles.js';
