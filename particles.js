@@ -9,21 +9,24 @@ document.addEventListener("mousemove", e => {
   mouse.y = e.clientY;
 });
 
+// Gri-Beyaz-Siyah tonları
 const colors = [
-  'rgba(108, 99, 255, 0.2)',
-  'rgba(0, 212, 255, 0.15)',
-  'rgba(255, 255, 255, 0.08)'
+  'rgba(255, 255, 255, 0.25)',
+  'rgba(200, 200, 200, 0.2)',
+  'rgba(150, 150, 150, 0.2)',
+  'rgba(100, 100, 100, 0.2)',
+  'rgba(50, 50, 50, 0.25)'
 ];
 
 let particles = [];
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 70; i++) {
   particles.push({
     x: Math.random() * c.width,
     y: Math.random() * c.height,
     vx: (Math.random() - .5) * 0.3,
     vy: (Math.random() - .5) * 0.3,
     color: colors[Math.floor(Math.random() * colors.length)],
-    size: Math.random() * 2 + 1.5
+    size: Math.random() * 2.5 + 1
   });
 }
 
@@ -35,11 +38,13 @@ function resize() {
 function draw() {
   ctx.clearRect(0, 0, c.width, c.height);
 
+  // ===== PARTİKÜLLERİ ÇİZ =====
   particles.forEach(p => {
     const dx = mouse.x - p.x;
     const dy = mouse.y - p.y;
     const dist = Math.sqrt(dx*dx + dy*dy);
 
+    // Mouse itme efekti
     if (dist < 150) {
       const force = (150 - dist) / 150;
       p.vx -= (dx / dist) * force * 0.04;
@@ -51,10 +56,12 @@ function draw() {
     p.vx *= 0.995;
     p.vy *= 0.995;
 
+    // Sınırlar
     if (p.x < 0 || p.x > c.width) p.vx *= -1;
     if (p.y < 0 || p.y > c.height) p.vy *= -1;
 
-    ctx.shadowBlur = 6;
+    // Glow ile çiz
+    ctx.shadowBlur = 8;
     ctx.shadowColor = p.color;
     ctx.fillStyle = p.color;
     ctx.beginPath();
@@ -63,15 +70,18 @@ function draw() {
     ctx.shadowBlur = 0;
   });
 
-  // Hafif bağlantı çizgileri
+  // ===== ÇİZGİ BAĞLANTILARI =====
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
       const dx = particles[i].x - particles[j].x;
       const dy = particles[i].y - particles[j].y;
       const dist = Math.sqrt(dx*dx + dy*dy);
       
-      if (dist < 100) {
-        ctx.strokeStyle = `rgba(108, 99, 255, ${0.03 * (1 - dist/100)})`;
+      // Mesafeye göre çizgi opacity'si
+      const maxDist = 120;
+      if (dist < maxDist) {
+        const opacity = 0.12 * (1 - dist / maxDist);
+        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
         ctx.lineWidth = 0.5;
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
