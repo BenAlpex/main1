@@ -9,12 +9,10 @@ document.addEventListener("mousemove", e => {
   mouse.y = e.clientY;
 });
 
-// Sakin renkler
 const colors = [
-  'rgba(108, 99, 255, 0.3)',
-  'rgba(0, 212, 255, 0.25)',
-  'rgba(255, 107, 157, 0.2)',
-  'rgba(255, 255, 255, 0.15)'
+  'rgba(108, 99, 255, 0.2)',
+  'rgba(0, 212, 255, 0.15)',
+  'rgba(255, 255, 255, 0.08)'
 ];
 
 let particles = [];
@@ -25,7 +23,7 @@ for (let i = 0; i < 50; i++) {
     vx: (Math.random() - .5) * 0.3,
     vy: (Math.random() - .5) * 0.3,
     color: colors[Math.floor(Math.random() * colors.length)],
-    size: Math.random() * 2 + 1
+    size: Math.random() * 2 + 1.5
   });
 }
 
@@ -42,11 +40,10 @@ function draw() {
     const dy = mouse.y - p.y;
     const dist = Math.sqrt(dx*dx + dy*dy);
 
-    // Mouse itme - yumuşak
     if (dist < 150) {
       const force = (150 - dist) / 150;
-      p.vx -= (dx / dist) * force * 0.05;
-      p.vy -= (dy / dist) * force * 0.05;
+      p.vx -= (dx / dist) * force * 0.04;
+      p.vy -= (dy / dist) * force * 0.04;
     }
 
     p.x += p.vx;
@@ -57,8 +54,7 @@ function draw() {
     if (p.x < 0 || p.x > c.width) p.vx *= -1;
     if (p.y < 0 || p.y > c.height) p.vy *= -1;
 
-    // Yumuşak glow ile çiz
-    ctx.shadowBlur = 8;
+    ctx.shadowBlur = 6;
     ctx.shadowColor = p.color;
     ctx.fillStyle = p.color;
     ctx.beginPath();
@@ -67,7 +63,7 @@ function draw() {
     ctx.shadowBlur = 0;
   });
 
-  // Hafif çizgi bağlantıları
+  // Hafif bağlantı çizgileri
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
       const dx = particles[i].x - particles[j].x;
@@ -75,7 +71,7 @@ function draw() {
       const dist = Math.sqrt(dx*dx + dy*dy);
       
       if (dist < 100) {
-        ctx.strokeStyle = `rgba(108, 99, 255, ${0.04 * (1 - dist/100)})`;
+        ctx.strokeStyle = `rgba(108, 99, 255, ${0.03 * (1 - dist/100)})`;
         ctx.lineWidth = 0.5;
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
