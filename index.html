@@ -12,11 +12,11 @@
 <!-- ===== GİRİŞ EKRANI ===== -->
 <div id="splashScreen">
     <div class="splash-content">
-        <div class="splash-logo">✦</div>
-        <h1 class="splash-title">Dijital Portfolyo</h1>
-        <p class="splash-sub">Hoş geldiniz</p>
+        <div class="splash-logo">☆</div>
+        <h1 class="splash-title">Hoşgeliniz</h1>
+        <p class="splash-sub">Alpex tarafından yapıldı..</p>
         <button id="enterBtn" class="splash-btn">
-            <span>✦ Girmek için tıkla ✦</span>
+            <span>Girmek için tıkla</span>
         </button>
         <div class="splash-loader">
             <div class="loader-bar" id="loaderBar"></div>
@@ -55,6 +55,7 @@
     <div class="center-ui">
         <div class="cards">
 
+            <!-- Discord -->
             <div class="card" data-color="rgba(33, 79, 153, 0.8)" onclick="go('https://discord.com/users/senin-id')">
                 <div class="card-icon">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
@@ -62,6 +63,7 @@
                 <span>Discord</span>
             </div>
 
+            <!-- TikTok -->
             <div class="card" data-color="rgba(205, 205, 205, 1)" onclick="go('https://tiktok.com/@senin-kullanici')">
                 <div class="card-icon">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" alt="TikTok">
@@ -69,6 +71,7 @@
                 <span>TikTok</span>
             </div>
 
+            <!-- Instagram -->
             <div class="card" data-color="rgba(129, 0, 125, 0.8)" onclick="go('https://instagram.com/senin-kullanici')">
                 <div class="card-icon">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
@@ -76,6 +79,7 @@
                 <span>Instagram</span>
             </div>
 
+            <!-- YouTube -->
             <div class="card" data-color="rgba(128, 0, 0, 1)" onclick="go('https://youtube.com/@senin-kanal')">
                 <div class="card-icon">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
@@ -83,6 +87,7 @@
                 <span>YouTube</span>
             </div>
 
+            <!-- Steam -->
             <div class="card" data-color="#1B2838" onclick="go('https://steamcommunity.com/id/senin-id')">
                 <div class="card-icon">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/steam.svg" alt="Steam">
@@ -90,6 +95,7 @@
                 <span>Steam</span>
             </div>
 
+            <!-- Roblox -->
             <div class="card" data-color="rgba(144, 144, 144, 1)" onclick="go('https://roblox.com/users/senin-id')">
                 <div class="card-icon">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" alt="Roblox">
@@ -97,6 +103,7 @@
                 <span>Roblox</span>
             </div>
 
+            <!-- Spotify -->
             <div class="card" data-color="rgba(0, 176, 79, 1)" onclick="go('https://open.spotify.com/user/senin-id')">
                 <div class="card-icon">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/spotify.svg" alt="Spotify">
@@ -104,6 +111,7 @@
                 <span>Spotify</span>
             </div>
 
+            <!-- GitHub -->
             <div class="card" data-color="rgba(205, 205, 205, 1)" onclick="go('https://github.com/senin-kullanici')">
                 <div class="card-icon">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
@@ -130,7 +138,6 @@ const loadInterval = setInterval(() => {
     if (progress > 100) {
         progress = 100;
         clearInterval(loadInterval);
-        // Butonu aktif et
         enterBtn.classList.add('active');
         loadingText.textContent = '✨ Hazır!';
         loadingText.style.color = 'rgba(108, 99, 255, 0.6)';
@@ -148,7 +155,6 @@ enterBtn.addEventListener('click', () => {
     setTimeout(() => {
         splashScreen.style.display = 'none';
         mainContent.style.display = 'block';
-        // Ana sayfa animasyonu
         document.querySelector('.header').style.animation = 'fadeDown 1.2s ease forwards';
         document.querySelectorAll('.card').forEach((card, i) => {
             setTimeout(() => {
@@ -157,7 +163,6 @@ enterBtn.addEventListener('click', () => {
                 card.style.transform = 'translateY(0)';
             }, 200 + (i * 80));
         });
-        // Particles başlat
         initParticles();
         initMouseGlow();
         initCardEffects();
@@ -179,23 +184,16 @@ function toggleMusic() {
     const pauseIcon = btn.querySelector('.pause-icon');
     
     if (!audio) {
-        // Gerçek müzik eklemek için:
-        // audio = new Audio('/assets/muzik.mp3');
-        // audio.loop = true;
-        // audio.volume = 0.2;
+        // 🎵 MÜZİK DOSYASI - public/muzik.mp3
+        audio = new Audio('/muzik.mp3');
+        audio.loop = true;
+        audio.volume = 0.2;
         
-        isMusicPlaying = !isMusicPlaying;
-        
-        if (isMusicPlaying) {
-            playIcon.style.display = 'none';
-            pauseIcon.style.display = 'block';
-            btn.classList.add('playing');
-        } else {
-            playIcon.style.display = 'block';
-            pauseIcon.style.display = 'none';
-            btn.classList.remove('playing');
-        }
-        return;
+        // Hata yönetimi
+        audio.onerror = function() {
+            console.log('Müzik dosyası bulunamadı! /public/muzik.mp3');
+            alert('Müzik dosyası bulunamadı! Lütfen public klasörüne muzik.mp3 ekleyin.');
+        };
     }
     
     if (isMusicPlaying) {
