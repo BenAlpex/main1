@@ -184,14 +184,20 @@ function toggleMusic() {
     const pauseIcon = btn.querySelector('.pause-icon');
     
     if (!audio) {
-        // 🎵 MÜZİK DOSYASI - ANA DİZİNDE (index.html ile aynı yerde)
-        audio = new Audio('muzik.mp3');  // ← BAŞINDAKİ / işaretini kaldırdım
+        // 🎵 GOOGLE DRİVE LİNKİ
+        const musicURL = 'https://drive.google.com/uc?export=download&id=1DTNAl2I5aRXhya__3rtDcOR6hyxE_ClN';
+        
+        audio = new Audio(musicURL);
         audio.loop = true;
         audio.volume = 0.2;
         
         audio.onerror = function() {
-            console.log('Müzik dosyası bulunamadı! muzik.mp3');
-            alert('Müzik dosyası bulunamadı! Lütfen muzik.mp3 dosyasını ana dizine ekleyin.');
+            console.log('❌ Müzik yüklenemedi!');
+            alert('Müzik yüklenemedi! Dosya herkese açık mı?');
+        };
+        
+        audio.oncanplay = function() {
+            console.log('✅ Müzik yüklendi!');
         };
     }
     
@@ -201,7 +207,10 @@ function toggleMusic() {
         pauseIcon.style.display = 'none';
         btn.classList.remove('playing');
     } else {
-        audio.play();
+        audio.play().catch(e => {
+            console.log('Müzik çalınamadı:', e);
+            alert('Müzik çalınamadı! Drive linkini kontrol edin.');
+        });
         playIcon.style.display = 'none';
         pauseIcon.style.display = 'block';
         btn.classList.add('playing');
