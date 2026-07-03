@@ -31,7 +31,7 @@
     <div class="cards">
 
         <!-- Discord -->
-        <div class="card" onclick="go('https://discord.com/users/senin-id')">
+        <div class="card" data-color="#5865F2" onclick="go('https://discord.com/users/senin-id')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
             </div>
@@ -39,7 +39,7 @@
         </div>
 
         <!-- TikTok -->
-        <div class="card" onclick="go('https://tiktok.com/@senin-kullanici')">
+        <div class="card" data-color="#000000" onclick="go('https://tiktok.com/@senin-kullanici')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" alt="TikTok">
             </div>
@@ -47,7 +47,7 @@
         </div>
 
         <!-- Instagram -->
-        <div class="card" onclick="go('https://instagram.com/senin-kullanici')">
+        <div class="card" data-color="#E4405F" onclick="go('https://instagram.com/senin-kullanici')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
             </div>
@@ -55,23 +55,23 @@
         </div>
 
         <!-- YouTube -->
-        <div class="card" onclick="go('https://youtube.com/@senin-kanal')">
+        <div class="card" data-color="#FF0000" onclick="go('https://youtube.com/@senin-kanal')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
             </div>
             <span>YouTube</span>
         </div>
 
-        <!-- Steam - DÜZELTİLDİ -->
-        <div class="card" onclick="go('https://steamcommunity.com/id/senin-id')">
+        <!-- Steam -->
+        <div class="card" data-color="#1B2838" onclick="go('https://steamcommunity.com/id/senin-id')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/steam.svg" alt="Steam">
             </div>
             <span>Steam</span>
         </div>
 
-        <!-- Roblox - DÜZELTİLDİ -->
-        <div class="card" onclick="go('https://roblox.com/users/senin-id')">
+        <!-- Roblox -->
+        <div class="card" data-color="#00B0F0" onclick="go('https://roblox.com/users/senin-id')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" alt="Roblox">
             </div>
@@ -79,7 +79,7 @@
         </div>
 
         <!-- Spotify -->
-        <div class="card" onclick="go('https://open.spotify.com/user/senin-id')">
+        <div class="card" data-color="#1DB954" onclick="go('https://open.spotify.com/user/senin-id')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/spotify.svg" alt="Spotify">
             </div>
@@ -87,7 +87,7 @@
         </div>
 
         <!-- GitHub -->
-        <div class="card" onclick="go('https://github.com/senin-kullanici')">
+        <div class="card" data-color="#ffffff" onclick="go('https://github.com/senin-kullanici')">
             <div class="card-icon">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
             </div>
@@ -136,8 +136,12 @@ function toggleMusic() {
     btn.classList.toggle('playing');
 }
 
-// 3D TİLT EFECT
+// 3D TİLT + HOVER RENK
 document.querySelectorAll(".card").forEach(card => {
+    const originalColor = card.dataset.color;
+    const icon = card.querySelector('.card-icon img');
+    
+    // Mouse hareketi - 3D tilt
     card.addEventListener("mousemove", e => {
         const r = card.getBoundingClientRect();
         const x = e.clientX - r.left - r.width / 2;
@@ -150,10 +154,50 @@ document.querySelectorAll(".card").forEach(card => {
         `;
     });
 
+    // Mouse hover - Logo rengi değişimi
+    card.addEventListener("mouseenter", () => {
+        if (icon) {
+            icon.style.filter = `brightness(0) saturate(100%) invert(0%) sepia(100%) hue-rotate(0deg)`;
+            // SVG renklendirme için özel filter
+            icon.style.filter = `drop-shadow(0 0 0 ${originalColor})`;
+            icon.style.color = originalColor;
+            // SVG'yi renklendirmek için
+            icon.style.filter = `invert(39%) sepia(89%) saturate(1000%) hue-rotate(${getHueRotation(originalColor)}deg) brightness(1.2)`;
+        }
+    });
+
     card.addEventListener("mouseleave", () => {
         card.style.transform = "translateY(0) scale(1)";
+        if (icon) {
+            icon.style.filter = "none";
+            icon.style.color = "#ffffff";
+        }
     });
 });
+
+// Renk değerinden hue rotation hesaplama
+function getHueRotation(hexColor) {
+    // RGB'ye çevir
+    const r = parseInt(hexColor.slice(1,3), 16);
+    const g = parseInt(hexColor.slice(3,5), 16);
+    const b = parseInt(hexColor.slice(5,7), 16);
+    
+    // HSL'ye çevir
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h = 0;
+    
+    if (max !== min) {
+        const d = max - min;
+        if (max === r) h = ((g - b) / d) % 6;
+        else if (max === g) h = (2 + (b - r) / d);
+        else h = (4 + (r - g) / d);
+        h *= 60;
+        if (h < 0) h += 360;
+    }
+    
+    return h;
+}
 </script>
 
 </body>
