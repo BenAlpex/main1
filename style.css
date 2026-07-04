@@ -179,7 +179,7 @@ body {
   position: relative;
   z-index: 3;
   text-align: center;
-  padding: 20px 20px 10px;
+  padding: 20px 20px 8px;
   opacity: 0;
   animation: fadeDown 1.2s ease forwards;
   flex-shrink: 0;
@@ -194,7 +194,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.05));
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 @keyframes fadeDown {
@@ -210,7 +210,7 @@ body {
 
 /* ===== BİO ===== */
 .bio {
-  max-width: 550px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -220,7 +220,7 @@ body {
   font-size: 0.9rem;
   font-weight: 300;
   line-height: 1.5;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
   letter-spacing: 0.3px;
 }
 
@@ -230,31 +230,24 @@ body {
   font-size: 1rem;
 }
 
-.bio p:last-of-type {
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.8rem;
-  margin-top: 4px;
-  margin-bottom: 0;
-}
-
 /* ===== HOBİLER ===== */
 .hobbies {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 5px;
+  margin-top: 6px;
 }
 
 .hobbies span {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.04);
-  padding: 3px 12px;
+  padding: 2px 12px;
   border-radius: 20px;
   font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.4);
   transition: all 0.3s ease;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
 .hobbies span:hover {
@@ -406,25 +399,24 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* ===== CARDS CONTAINER ===== */
-.cards-container {
+/* ===== CARDS ===== */
+.center-ui {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px 30px;
+  padding: 8px 20px 30px;
   z-index: 3;
   position: relative;
 }
 
-/* ===== CARDS (YATAY) ===== */
 .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 14px;
-  max-width: 900px;
+  gap: 12px;
+  max-width: 750px;
 }
 
 /* ===== CARD ===== */
@@ -432,8 +424,8 @@ body {
   position: relative;
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(20px);
-  border-radius: 16px;
-  padding: 16px 14px 14px;
+  border-radius: 14px;
+  padding: 14px 12px 12px;
   text-align: center;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.03);
@@ -442,7 +434,7 @@ body {
   perspective: 800px;
   opacity: 0;
   transform: translateY(30px);
-  width: 100px;
+  width: 90px;
   flex-shrink: 0;
 }
 
@@ -457,9 +449,9 @@ body {
 
 /* ===== CARD ICON ===== */
 .card-icon {
-  width: 38px;
-  height: 38px;
-  margin: 0 auto 8px;
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 6px;
   transform: translateZ(25px);
   transition: all 0.4s;
   display: flex;
@@ -482,12 +474,12 @@ body {
 /* ===== CARD TEXT ===== */
 .card span {
   display: block;
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.25);
   transform: translateZ(15px);
   transition: all 0.3s;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   text-transform: uppercase;
 }
 
@@ -515,21 +507,23 @@ body {
   }
   
   .card {
-    width: 85px;
-    padding: 12px 10px 10px;
+    width: 78px;
+    padding: 10px 8px 8px;
+    border-radius: 12px;
   }
   
   .card-icon {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
   
   .card span {
-    font-size: 0.55rem;
+    font-size: 0.5rem;
   }
   
   .cards {
     gap: 10px;
+    max-width: 550px;
   }
   
   #musicControls {
@@ -580,8 +574,8 @@ body {
     font-size: 0.65rem;
   }
 
-  .cards-container {
-    padding: 5px 10px 20px;
+  .center-ui {
+    padding: 5px 15px 20px;
   }
 }
 
@@ -608,23 +602,24 @@ body {
   }
   
   .card {
-    width: 72px;
-    padding: 10px 6px 8px;
-    border-radius: 12px;
+    width: 65px;
+    padding: 8px 6px 6px;
+    border-radius: 10px;
   }
   
   .card-icon {
-    width: 28px;
-    height: 28px;
-    margin-bottom: 5px;
+    width: 26px;
+    height: 26px;
+    margin-bottom: 4px;
   }
   
   .card span {
-    font-size: 0.5rem;
+    font-size: 0.45rem;
   }
   
   .cards {
     gap: 8px;
+    max-width: 350px;
   }
   
   #musicControls {
@@ -684,7 +679,7 @@ body {
     font-size: 0.6rem;
   }
 
-  .cards-container {
-    padding: 5px 8px 15px;
+  .center-ui {
+    padding: 5px 10px 15px;
   }
 }
