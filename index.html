@@ -1,16 +1,338 @@
-<!-- ===== HEADER ===== -->
-<div class="header">
-    <div class="logo">✦ @kullaniciadiniz ✦</div>
-    <div class="bio">
-        <p>Merhaba! Ben Alpex. 🎮</p>
-        <p>Oyun oynamayı, müzik dinlemeyi ve yeni şeyler keşfetmeyi seviyorum.</p>
-        <p>💻 Web tasarım · 🎨 Grafik · 📹 Video düzenleme</p>
-        <div class="hobbies">
-            <span>🎮 Oyun</span>
-            <span>🎵 Müzik</span>
-            <span>📸 Fotoğraf</span>
-            <span>✈️ Seyahat</span>
-            <span>📚 Kitap</span>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital Portfolyo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ===== GİRİŞ EKRANI ===== -->
+<div id="splashScreen">
+    <div class="splash-content">
+        <div class="splash-logo">☆</div>
+        <h1 class="splash-title">Hoşgeldiniz</h1>
+        <p class="splash-sub">Alpex tarafından yapıldı..</p>
+        <button id="enterBtn" class="splash-btn">
+            <span>Girmek için tıkla</span>
+        </button>
+        <div class="splash-loader">
+            <div class="loader-bar" id="loaderBar"></div>
         </div>
+        <div class="splash-loading-text" id="loadingText">Yükleniyor...</div>
     </div>
 </div>
+
+<!-- ===== ANA SAYFA ===== -->
+<div id="mainContent" style="display:none;">
+
+    <!-- MOUSE GLOW -->
+    <div class="mouse-glow" id="glow"></div>
+
+    <!-- PARTICLES -->
+    <canvas id="particles"></canvas>
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <div class="logo">✦ @kullaniciadiniz ✦</div>
+        <div class="bio">
+            <p>Merhaba! Ben Alpex. 🎮</p>
+            <p>İstanbul'da yaşıyorum. Oyun oynamayı, müzik dinlemeyi ve yeni şeyler keşfetmeyi seviyorum.</p>
+            <p>💻 Web tasarım · 🎨 Grafik · 📹 Video düzenleme</p>
+            <div class="hobbies">
+                <span>🎮 Oyun</span>
+                <span>🎵 Müzik</span>
+                <span>📸 Fotoğraf</span>
+                <span>✈️ Seyahat</span>
+                <span>📚 Kitap</span>
+                <span>💻 Teknoloji</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MÜZİK KONTROLLERİ ===== -->
+    <div id="musicControls">
+        <button id="musicBtn" onclick="toggleMusic()">
+            <svg class="music-icon play-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                <polygon points="5,3 19,12 5,21" />
+            </svg>
+            <svg class="music-icon pause-icon" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="6" y="4" width="4" height="16" />
+                <rect x="14" y="4" width="4" height="16" />
+            </svg>
+        </button>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.2">
+    </div>
+
+    <!-- ===== ZİYARETÇİ SAYACI ===== -->
+    <div class="counter-container">
+        <a href="https://www.flagcounter.com/">
+            <img src="https://s01.flagcounter.com/count2/XXXXX/bg=000000/txt=FFFFFF/border=FFFFFF/columns=1/maxflags=1/viewers=0/labels=0/" alt="Ziyaretçi Sayacı">
+        </a>
+        <span class="counter-label">👤 Ziyaretçi</span>
+    </div>
+
+    <!-- ===== CARDS ===== -->
+    <div class="center-ui">
+        <div class="cards">
+
+            <!-- Discord -->
+            <div class="card" data-color="rgba(33, 79, 153, 0.8)" onclick="go('https://discord.com/users/senin-id')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
+                </div>
+                <span>Discord</span>
+            </div>
+
+            <!-- TikTok -->
+            <div class="card" data-color="rgba(205, 205, 205, 1)" onclick="go('https://tiktok.com/@senin-kullanici')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" alt="TikTok">
+                </div>
+                <span>TikTok</span>
+            </div>
+
+            <!-- Instagram -->
+            <div class="card" data-color="rgba(129, 0, 125, 0.8)" onclick="go('https://instagram.com/senin-kullanici')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
+                </div>
+                <span>Instagram</span>
+            </div>
+
+            <!-- YouTube -->
+            <div class="card" data-color="rgba(128, 0, 0, 1)" onclick="go('https://youtube.com/@senin-kanal')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
+                </div>
+                <span>YouTube</span>
+            </div>
+
+            <!-- Steam -->
+            <div class="card" data-color="#1B2838" onclick="go('https://steamcommunity.com/id/senin-id')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/steam.svg" alt="Steam">
+                </div>
+                <span>Steam</span>
+            </div>
+
+            <!-- Roblox -->
+            <div class="card" data-color="rgba(144, 144, 144, 1)" onclick="go('https://roblox.com/users/senin-id')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" alt="Roblox">
+                </div>
+                <span>Roblox</span>
+            </div>
+
+            <!-- Spotify -->
+            <div class="card" data-color="rgba(0, 176, 79, 1)" onclick="go('https://open.spotify.com/user/senin-id')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/spotify.svg" alt="Spotify">
+                </div>
+                <span>Spotify</span>
+            </div>
+
+            <!-- GitHub -->
+            <div class="card" data-color="rgba(205, 205, 205, 1)" onclick="go('https://github.com/senin-kullanici')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
+                </div>
+                <span>GitHub</span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ===== GİRİŞ EKRANI =====
+const splashScreen = document.getElementById('splashScreen');
+const mainContent = document.getElementById('mainContent');
+const enterBtn = document.getElementById('enterBtn');
+const loaderBar = document.getElementById('loaderBar');
+const loadingText = document.getElementById('loadingText');
+
+let progress = 0;
+const loadInterval = setInterval(() => {
+    progress += Math.random() * 10 + 5;
+    if (progress > 100) {
+        progress = 100;
+        clearInterval(loadInterval);
+        enterBtn.classList.add('active');
+        loadingText.textContent = '✨ Hazır!';
+        loadingText.style.color = 'rgba(255, 255, 255, 0.6)';
+    }
+    loaderBar.style.width = progress + '%';
+    if (progress < 100) {
+        const dots = '.'.repeat(Math.floor(progress / 10) % 4);
+        loadingText.textContent = 'Yükleniyor' + dots;
+    }
+}, 200);
+
+// ===== GİRİŞ BUTONU =====
+enterBtn.addEventListener('click', () => {
+    splashScreen.classList.add('fade-out');
+    setTimeout(() => {
+        splashScreen.style.display = 'none';
+        mainContent.style.display = 'block';
+        
+        // Header animasyonu
+        document.querySelector('.header').style.animation = 'fadeDown 1.2s ease forwards';
+        
+        // Card animasyonları
+        document.querySelectorAll('.card').forEach((card, i) => {
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 200 + (i * 80));
+        });
+        
+        // 🎵 MÜZİĞİ OTOMATİK BAŞLAT
+        startMusic();
+        
+        initParticles();
+        initMouseGlow();
+        initCardEffects();
+    }, 800);
+});
+
+// ===== FONKSİYONLAR =====
+function go(url) {
+    window.open(url, "_blank");
+}
+
+// ============================================================
+// 🎵 MÜZİK KONTROLÜ - OTOMATİK BAŞLAT + SES ÇUBUĞU
+// ============================================================
+let isMusicPlaying = false;
+let audio = null;
+
+function startMusic() {
+    if (!audio) {
+        const musicURL = 'https://raw.githubusercontent.com/BenAlpex/main1/main/muzik.mp3';
+        audio = new Audio(musicURL);
+        audio.loop = true;
+        audio.volume = 0.2;
+        
+        audio.onerror = function() {
+            console.log('❌ Müzik yüklenemedi!');
+        };
+        
+        audio.oncanplay = function() {
+            console.log('✅ Müzik yüklendi!');
+            if (!isMusicPlaying) {
+                audio.play().catch(e => console.log('Otomatik çalma engellendi:', e));
+                isMusicPlaying = true;
+                updateMusicUI();
+            }
+        };
+        
+        // Ses çubuğu event'i
+        const volumeSlider = document.getElementById('volumeSlider');
+        volumeSlider.addEventListener('input', function() {
+            if (audio) {
+                audio.volume = parseFloat(this.value);
+                const percent = (this.value / this.max) * 100;
+                this.style.background = `linear-gradient(to right, #fff 0%, #fff ${percent}%, rgba(255,255,255,0.1) ${percent}%)`;
+            }
+        });
+        
+        // Başlangıç ses seviyesini ayarla
+        setTimeout(() => {
+            const volumeSlider = document.getElementById('volumeSlider');
+            volumeSlider.value = 0.2;
+            const percent = (0.2 / 1) * 100;
+            volumeSlider.style.background = `linear-gradient(to right, #fff 0%, #fff ${percent}%, rgba(255,255,255,0.1) ${percent}%)`;
+        }, 100);
+    }
+}
+
+function toggleMusic() {
+    const btn = document.getElementById('musicBtn');
+    
+    if (!audio) {
+        startMusic();
+        return;
+    }
+    
+    if (isMusicPlaying) {
+        audio.pause();
+        isMusicPlaying = false;
+    } else {
+        audio.play().catch(e => console.log('Müzik çalınamadı:', e));
+        isMusicPlaying = true;
+    }
+    updateMusicUI();
+}
+
+function updateMusicUI() {
+    const btn = document.getElementById('musicBtn');
+    const playIcon = btn.querySelector('.play-icon');
+    const pauseIcon = btn.querySelector('.pause-icon');
+    
+    if (isMusicPlaying) {
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+        btn.classList.add('playing');
+    } else {
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+        btn.classList.remove('playing');
+    }
+}
+
+// ===== 3D TİLT + HOVER RENK =====
+function initCardEffects() {
+    document.querySelectorAll(".card").forEach(card => {
+        const originalColor = card.dataset.color;
+        const icon = card.querySelector('.card-icon img');
+        
+        card.addEventListener("mousemove", e => {
+            const r = card.getBoundingClientRect();
+            const x = e.clientX - r.left - r.width / 2;
+            const y = e.clientY - r.top - r.height / 2;
+            card.style.transform = `
+                rotateY(${x / 20}deg) 
+                rotateX(${-y / 20}deg) 
+                translateY(-8px) 
+                scale(1.05)
+            `;
+        });
+
+        card.addEventListener("mouseenter", () => {
+            if (icon && originalColor) {
+                icon.style.filter = `drop-shadow(0 0 0 ${originalColor})`;
+                icon.style.color = originalColor;
+            }
+        });
+
+        card.addEventListener("mouseleave", () => {
+            card.style.transform = "translateY(0) scale(1)";
+            if (icon) {
+                icon.style.filter = "brightness(0) invert(1)";
+                icon.style.color = "#ffffff";
+            }
+        });
+    });
+}
+
+// ===== PARTICLES =====
+function initParticles() {
+    const script = document.createElement('script');
+    script.src = 'particles.js';
+    document.body.appendChild(script);
+}
+
+function initMouseGlow() {
+    const script = document.createElement('script');
+    script.src = 'bg.js';
+    document.body.appendChild(script);
+}
+</script>
+
+</body>
+</html>
