@@ -34,23 +34,110 @@
     <!-- PARTICLES -->
     <canvas id="particles"></canvas>
 
-    <!-- ===== HEADER ===== -->
-    <div class="header">
-        <div class="logo">✦ @kullaniciadiniz ✦</div>
-        <div class="bio">
-            <p>Merhaba! Ben Alpex. 🎮</p>
-            <p>İstanbul'da yaşıyorum. Oyun oynamayı, müzik dinlemeyi ve yeni şeyler keşfetmeyi seviyorum.</p>
-            <p>💻 Web tasarım · 🎨 Grafik · 📹 Video düzenleme</p>
-            <div class="hobbies">
-                <span>🎮 Oyun</span>
-                <span>🎵 Müzik</span>
-                <span>📸 Fotoğraf</span>
-                <span>✈️ Seyahat</span>
-                <span>📚 Kitap</span>
-                <span>💻 Teknoloji</span>
-            </div>
+<!-- ===== HEADER ===== -->
+<div class="header">
+    <div class="logo">✦ @kullaniciadiniz ✦</div>
+    <div class="bio">
+        <p>Merhaba! Ben Alpex. 🎮</p>
+        <p>İstanbul'da yaşıyorum. Oyun oynamayı, müzik dinlemeyi ve yeni şeyler keşfetmeyi seviyorum.</p>
+        <p>💻 Web tasarım · 🎨 Grafik · 📹 Video düzenleme</p>
+        <div class="hobbies">
+            <span>🎮 Oyun</span>
+            <span>🎵 Müzik</span>
+            <span>📸 Fotoğraf</span>
+            <span>✈️ Seyahat</span>
+            <span>📚 Kitap</span>
+            <span>💻 Teknoloji</span>
         </div>
     </div>
+</div>
+
+<!-- ===== MÜZİK KONTROLLERİ ===== -->
+<div id="musicControls">
+    <button id="musicBtn" onclick="toggleMusic()">
+        <svg class="music-icon play-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <polygon points="5,3 19,12 5,21" />
+        </svg>
+        <svg class="music-icon pause-icon" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16" />
+            <rect x="14" y="4" width="4" height="16" />
+        </svg>
+    </button>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.2">
+</div>
+
+<!-- ===== CARDS (YATAY) ===== -->
+<div class="center-ui">
+    <div class="cards-container">
+        <div class="cards">
+
+            <!-- Discord -->
+            <div class="card" data-color="rgba(33, 79, 153, 0.8)" onclick="go('https://discord.com/users/senin-id')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
+                </div>
+                <span>Discord</span>
+            </div>
+
+            <!-- TikTok -->
+            <div class="card" data-color="rgba(205, 205, 205, 1)" onclick="go('https://tiktok.com/@senin-kullanici')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" alt="TikTok">
+                </div>
+                <span>TikTok</span>
+            </div>
+
+            <!-- Instagram -->
+            <div class="card" data-color="rgba(129, 0, 125, 0.8)" onclick="go('https://instagram.com/senin-kullanici')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
+                </div>
+                <span>Instagram</span>
+            </div>
+
+            <!-- YouTube -->
+            <div class="card" data-color="rgba(128, 0, 0, 1)" onclick="go('https://youtube.com/@senin-kanal')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
+                </div>
+                <span>YouTube</span>
+            </div>
+
+            <!-- Steam -->
+            <div class="card" data-color="#1B2838" onclick="go('https://steamcommunity.com/id/senin-id')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/steam.svg" alt="Steam">
+                </div>
+                <span>Steam</span>
+            </div>
+
+            <!-- Roblox -->
+            <div class="card" data-color="rgba(144, 144, 144, 1)" onclick="go('https://roblox.com/users/senin-id')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" alt="Roblox">
+                </div>
+                <span>Roblox</span>
+            </div>
+
+            <!-- Spotify -->
+            <div class="card" data-color="rgba(0, 176, 79, 1)" onclick="go('https://open.spotify.com/user/senin-id')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/spotify.svg" alt="Spotify">
+                </div>
+                <span>Spotify</span>
+            </div>
+
+            <!-- GitHub -->
+            <div class="card" data-color="rgba(205, 205, 205, 1)" onclick="go('https://github.com/senin-kullanici')">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
+                </div>
+                <span>GitHub</span>
+            </div>
+
+        </div>
+    </div>
+</div>
 
     <!-- ===== MÜZİK KONTROLLERİ ===== -->
     <div id="musicControls">
