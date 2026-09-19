@@ -123,15 +123,6 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,6vw,4.2rem)
 .fact b{font-family:var(--display);font-size:2.6rem;line-height:1;letter-spacing:-.04em;font-weight:700}
 .fact span{color:var(--ink-3);font-family:var(--mono);font-size:.78rem}
 
-/* ---------- YETENEKLER ---------- */
-.marquee{overflow:hidden;border-block:1px solid var(--line);padding:1.5rem 0;margin:0 calc(-1*clamp(1.2rem,5vw,4rem));
-  -webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.track{display:flex;gap:3rem;width:max-content;animation:scroll 32s linear infinite}
-.marquee:hover .track{animation-play-state:paused}
-.track span{font-family:var(--display);font-weight:500;font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:-.02em;color:var(--ink-3);white-space:nowrap;transition:color .3s}
-.track span:hover{color:var(--ink)}
-@keyframes scroll{to{transform:translateX(-50%)}}
-
 /* ---------- PROJELER ---------- */
 .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
 .card{padding:0;overflow:hidden;position:relative;display:flex;flex-direction:column;transform-style:preserve-3d;transition:transform .2s ease-out,border-color .3s}
@@ -159,19 +150,6 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,6vw,4.2rem)
 .item h3{font-family:var(--display);font-weight:500;font-size:1.4rem;letter-spacing:-.02em;margin:.15rem 0 .3rem}
 .item p{color:var(--ink-2);max-width:60ch}
 
-/* ---------- İLETİŞİM ---------- */
-.contact{text-align:center}
-.contact h2{font-size:clamp(2.6rem,9vw,7rem);margin-bottom:1.6rem}
-.mail{display:inline-flex;align-items:center;gap:.8rem;font-family:var(--mono);font-size:1rem;padding:1rem 1.8rem;border-radius:99px;
-  background:var(--ink);color:var(--bg);font-weight:500;transition:transform .3s,box-shadow .3s}
-.mail:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,255,255,.18)}
-.form{max-width:520px;margin:3rem auto 0;display:grid;gap:.8rem;text-align:left}
-.form input,.form textarea{width:100%;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem;color:var(--ink);
-  font:inherit;font-weight:300;transition:border-color .3s,background .3s;resize:vertical}
-.form input::placeholder,.form textarea::placeholder{color:var(--ink-3)}
-.form input:focus,.form textarea:focus{outline:0;border-color:rgba(255,255,255,.35);background:var(--glass-2)}
-.form button{padding:1rem;border-radius:14px;background:var(--glass-2);border:1px solid var(--line);font-weight:500;transition:.3s}
-.form button:hover{background:var(--ink);color:var(--bg)}
 footer{text-align:center;color:var(--ink-3);font-family:var(--mono);font-size:.74rem;padding:2rem 1rem 8rem}
 
 /* ---------- MÜZİK ÇALAR ---------- */
@@ -244,10 +222,8 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(255,255,
   <div class="links">
     <a href="#top" class="active">Ana sayfa</a>
     <a href="#hakkimda">Hakkımda</a>
-    <a href="#yetenekler">Yetenekler</a>
     <a href="#projeler">Projeler</a>
     <a href="#deneyim">Deneyim</a>
-    <a href="#iletisim">İletişim</a>
   </div>
 </nav>
 
@@ -280,15 +256,6 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(255,255,
     </div>
   </section>
 
-  <!-- YETENEKLER -->
-  <section id="yetenekler" data-section="yetenekler">
-    <div class="wrap">
-      <h2 class="reveal">Yetenekler</h2>
-      <p class="lead reveal">Günlük olarak kullandığım araçlar.</p>
-    </div>
-    <div class="marquee reveal"><div class="track" id="track"></div></div>
-  </section>
-
   <!-- PROJELER -->
   <section id="projeler" data-section="projeler">
     <div class="wrap">
@@ -307,20 +274,6 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(255,255,
     </div>
   </section>
 
-  <!-- İLETİŞİM -->
-  <section id="iletisim" class="contact" data-section="iletisim">
-    <div class="wrap">
-      <h2 class="reveal">Birlikte çalışalım</h2>
-      <a class="mail reveal" id="mailLink" href="mailto:ornek@mail.com">ornek@mail.com</a>
-      <!-- Formu çalıştırmak için action kısmına Formspree gibi bir servis adresi yaz -->
-      <form class="form reveal" action="https://formspree.io/f/FORM_ID" method="POST">
-        <input type="text" name="isim" placeholder="Adın" required aria-label="Adın">
-        <input type="email" name="email" placeholder="E-posta adresin" required aria-label="E-posta adresin">
-        <textarea name="mesaj" rows="4" placeholder="Mesajın" required aria-label="Mesajın"></textarea>
-        <button type="submit">Mesajı gönder</button>
-      </form>
-    </div>
-  </section>
 </main>
 
 <footer id="footer"></footer>
@@ -361,7 +314,6 @@ const CONFIG = {
   name: "Adın Soyadın",
   avatar: "",                 // profil foto yolu, örn: "img/ben.jpg" (boşsa baş harf görünür)
   taglines: ["Yazılım geliştirici", "Arayüz tasarımcısı", "Oyun tutkunu", "Müzik bağımlısı"],
-  email: "ornek@mail.com",
   baseViews: 0,               // sayaç başlangıcı (0 = gerçek ziyaretçi sayısı, istersen 100 gibi bir sayı yaz)
 
   // slug = simpleicons.org'daki ikon adı. url = kendi profil linkin
@@ -376,8 +328,6 @@ const CONFIG = {
     { label: "X",         slug: "x",         url: "https://x.com/kullanici" },
     { label: "Steam",     slug: "steam",     url: "https://steamcommunity.com/id/kullanici" }
   ],
-
-  skills: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Node.js", "Figma", "Python", "Git", "Tailwind", "TypeScript"],
 
   projects: [
     { title: "Proje bir",  desc: "Kısa bir açıklama yaz: ne yapıyor, kimin için?", tags: ["Next.js", "Tailwind"], img: "", url: "#" },
@@ -410,17 +360,12 @@ $("#name").textContent = CONFIG.name;
 $("#logoName").textContent = CONFIG.name.split(" ")[0].toLowerCase();
 $("#logoLetter").textContent = CONFIG.name[0].toUpperCase();
 $("#footer").textContent = "© " + new Date().getFullYear() + " " + CONFIG.name;
-$("#mailLink").href = "mailto:" + CONFIG.email;
-$("#mailLink").textContent = CONFIG.email;
 if (CONFIG.avatar) $("#avatar").innerHTML = `<img src="${CONFIG.avatar}" alt="${CONFIG.name}">`;
 else $("#avatar").textContent = CONFIG.name[0].toUpperCase();
 
 $("#socials").innerHTML = CONFIG.socials.map(s =>
   `<a class="soc" href="${s.url}" target="_blank" rel="noopener" aria-label="${s.label}">
      <i style="--ic:url('https://cdn.simpleicons.org/${s.slug}')"></i><em>${s.label}</em></a>`).join("");
-
-const dup = CONFIG.skills.concat(CONFIG.skills);
-$("#track").innerHTML = dup.map(s => `<span>${s}</span>`).join("");
 
 const arrow = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>`;
 $("#projects").innerHTML = CONFIG.projects.map(p => `
