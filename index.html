@@ -31,7 +31,6 @@ body{
   background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;
   line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
-body.locked{overflow:hidden}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
@@ -50,15 +49,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   animation:grain 1.2s steps(6) infinite}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
-
-/* ---------- GİRİŞ EKRANI ---------- */
-.gate{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--bg);
-  transition:opacity .9s ease,visibility .9s ease}
-.gate.hide{opacity:0;visibility:hidden}
-.gate button{font-family:var(--display);font-weight:300;font-size:clamp(1.2rem,3vw,1.6rem);color:var(--ink-2);
-  letter-spacing:.02em;padding:1.2rem 2rem;transition:color .3s,letter-spacing .5s}
-.gate button:hover{color:var(--ink);letter-spacing:.12em}
-.gate small{display:block;font-family:var(--mono);font-size:.72rem;color:var(--ink-3);margin-top:.6rem;text-align:center}
 
 /* ---------- NAV ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
@@ -110,7 +100,6 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,6vw,4.2rem)
 .soc em{position:absolute;bottom:-2.1rem;left:50%;transform:translateX(-50%) translateY(-4px);font-style:normal;font-family:var(--mono);
   font-size:.68rem;color:var(--ink);opacity:0;pointer-events:none;transition:.25s;white-space:nowrap}
 .soc:hover em{opacity:1;transform:translateX(-50%)}
-
 
 /* ---------- HAKKIMDA ---------- */
 .about{display:grid;grid-template-columns:1.3fr 1fr;gap:1.4rem}
@@ -203,7 +192,7 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(255,255,
 }
 </style>
 </head>
-<body class="locked">
+<body>
 
 <div class="bg" aria-hidden="true"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
 <div class="spot" aria-hidden="true"></div>
@@ -305,7 +294,7 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(255,255,
 const CONFIG = {
   name: "Alpex",
   avatar: "https://i.pinimg.com/736x/60/9d/af/609daf092a7fe23dd4932a3321ceeb96.jpg",                 // profil foto yolu, örn: "img/ben.jpg" (boşsa baş harf görünür)
-  taglines: ["Portfolyoma Hoşgeldin", "İlgi alanlarım ve sevgiğim şeyleri öğrenebilirsin", "Ziyaret ettiğin için teşekkürler", ":)"],
+  taglines: ["Portfolyoma Hoşgeldin", "İlgi alanlarım ve sevdiğim şeyleri öğrenebilirsin", "Ziyaret ettiğin için teşekkürler", ":)"],
   baseViews: 0,               // sayaç başlangıcı (0 = gerçek ziyaretçi sayısı, istersen 100 gibi bir sayı yaz)
 
   // slug = simpleicons.org'daki ikon adı. url = kendi profil linkin
@@ -346,7 +335,6 @@ const CONFIG = {
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-document.title = CONFIG.name + " — Portfolyo";
 $("#name").textContent = CONFIG.name;
 $("#logoName").textContent = CONFIG.name.split(" ")[0].toLowerCase();
 $("#logoLetter").textContent = CONFIG.name[0].toUpperCase();
@@ -497,7 +485,7 @@ let lastVol = CONFIG.volume;
 P.vol.addEventListener("input", () => { const v = +P.vol.value; if (v > 0) lastVol = v; setVol(v); });
 $("#mute").onclick = () => setVol(audio.volume === 0 ? (lastVol || .4) : 0);
 addEventListener("keydown", e => {
-  if (e.code === "Space" && !/INPUT|TEXTAREA|BUTTON/.test(document.activeElement.tagName) && !$("body").classList.contains("locked")) {
+  if (e.code === "Space" && !/INPUT|TEXTAREA|BUTTON/.test(document.activeElement.tagName)) {
     e.preventDefault(); P.toggle.click();
   }
 });
@@ -505,13 +493,15 @@ addEventListener("keydown", e => {
 setVol(CONFIG.volume);
 load(0, false);
 
-/* ============================ GİRİŞ ============================ */
-$("#enter").onclick = () => {
-  $("#gate").classList.add("hide");
-  document.body.classList.remove("locked");
-  P.root.classList.add("show");
-  play();
-};
+/* ============================ AÇILIŞ ============================ */
+// Çalar sayfa açılınca aşağıdan kayarak gelir
+setTimeout(() => P.root.classList.add("show"), 400);
+
+// Müziği otomatik başlatmayı dene. Tarayıcı izin vermezse, ziyaretçi
+// sayfada ilk tıkladığında / dokunduğunda / tuşa bastığında başlar.
+const firstEvents = ["pointerdown", "keydown", "touchstart"];
+const startOnInteract = () => { firstEvents.forEach(e => removeEventListener(e, startOnInteract)); play(); };
+audio.play().catch(() => firstEvents.forEach(e => addEventListener(e, startOnInteract)));
 </script>
 </body>
 </html>
