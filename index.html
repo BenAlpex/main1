@@ -47,7 +47,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* Tür bölümüne özel, kaydırdıkça YAVAŞÇA değişen arka plan (iki katman çapraz geçiş yapar) */
 .genre-backdrop{position:fixed;inset:0;z-index:-2;opacity:0;transition:opacity 2.2s ease}
 .genre-backdrop.on{opacity:1}
-.gb-layer{position:absolute;inset:-12%;background-size:cover;background-position:center;opacity:0;transition:opacity 2.6s ease-in-out}
+.gb-layer{position:absolute;inset:-12%;background-size:cover;background-position:center;opacity:0;transition:opacity 3.4s ease-in-out}
 .gb-layer.show{opacity:1}
 
 .spot{position:fixed;inset:0;z-index:-1;pointer-events:none;
@@ -550,6 +550,9 @@ if (fine) $$(".card").forEach(c => {
 /* ============================ TÜRE ÖZEL, YAVAŞÇA KAYAN ARKA PLAN ============================ */
 const backdrop = $("#genreBackdrop");
 let gbShown = "a";
+let lastColor = null, lastImg = null;
+let gbTimer = null;
+
 function genreGradient(color, img) {
   if (img) {
     // Resim varken renk KARIŞMAZ; sadece okunabilirlik için ince bir koyu örtü var.
@@ -559,12 +562,21 @@ function genreGradient(color, img) {
           radial-gradient(circle at 85% 78%, color-mix(in srgb, ${color} 42%, transparent), transparent 60%),
           linear-gradient(180deg, color-mix(in srgb, ${color} 16%, #0b0b0c), #0b0b0c 75%)`;
 }
+
 function setGenreBg(color, img) {
-  const hidden = gbShown === "a" ? "b" : "a";
-  const hiddenEl = $(".gb-layer." + hidden), shownEl = $(".gb-layer." + gbShown);
-  hiddenEl.style.background = genreGradient(color, img);
-  requestAnimationFrame(() => { hiddenEl.classList.add("show"); shownEl.classList.remove("show"); });
-  gbShown = hidden;
+  // Aynı renk zaten gösteriliyorsa hiçbir şey yapma (gereksiz geçişi engeller)
+  if (color === lastColor && img === lastImg) return;
+  lastColor = color; lastImg = img;
+
+  // Hızlı art arda tetiklenmeleri (fast scroll) tek bir yumuşak geçişe topla
+  clearTimeout(gbTimer);
+  gbTimer = setTimeout(() => {
+    const hidden = gbShown === "a" ? "b" : "a";
+    const hiddenEl = $(".gb-layer." + hidden), shownEl = $(".gb-layer." + gbShown);
+    hiddenEl.style.background = genreGradient(color, img);
+    requestAnimationFrame(() => { hiddenEl.classList.add("show"); shownEl.classList.remove("show"); });
+    gbShown = hidden;
+  }, 180);
 }
 const genreEls = $$(".genre");
 const gio = new IntersectionObserver(es => es.forEach(e => {
@@ -573,7 +585,7 @@ const gio = new IntersectionObserver(es => es.forEach(e => {
     const g = CONFIG.playlists[+e.target.dataset.i];
     setGenreBg(g.color, g.img);
   }
-}), { rootMargin: "-42% 0px -42% 0px", threshold: 0 });
+}), { rootMargin: "-35% 0px -35% 0px", threshold: 0 });
 genreEls.forEach(el => gio.observe(el));
 
 const bio = new IntersectionObserver(es => es.forEach(e => backdrop.classList.toggle("on", e.isIntersecting)),
