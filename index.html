@@ -44,10 +44,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .blob.c{width:45vmax;height:45vmax;left:20vmax;bottom:-25vmax;background:radial-gradient(circle,#333336,transparent 65%);animation:drift 40s ease-in-out infinite alternate}
 @keyframes drift{to{transform:translate3d(6vmax,4vmax,0) scale(1.15)}}
 
-/* Tür bölümüne özel, kaydırdıkça değişen arka plan (iki katman çapraz geçiş yapar) */
-.genre-backdrop{position:fixed;inset:0;z-index:-2;opacity:0;transition:opacity 1.1s ease}
+/* Tür bölümüne özel, kaydırdıkça YAVAŞÇA değişen arka plan (iki katman çapraz geçiş yapar) */
+.genre-backdrop{position:fixed;inset:0;z-index:-2;opacity:0;transition:opacity 2.2s ease}
 .genre-backdrop.on{opacity:1}
-.gb-layer{position:absolute;inset:-12%;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease}
+.gb-layer{position:absolute;inset:-12%;background-size:cover;background-position:center;opacity:0;transition:opacity 2.6s ease-in-out}
 .gb-layer.show{opacity:1}
 
 .spot{position:fixed;inset:0;z-index:-1;pointer-events:none;
@@ -63,8 +63,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nav.scrolled{background:rgba(11,11,12,.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 .logo{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.02em;display:flex;align-items:center;gap:.7rem}
 .logo i{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-style:normal;font-size:.85rem;font-weight:800}
-.links{display:flex;gap:clamp(1rem,2.4vw,2.2rem);font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
-.links a{color:var(--ink-2);position:relative;padding:.3rem 0;transition:color .25s}
+.links{display:flex;gap:clamp(.9rem,2vw,1.9rem);font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+.links a{color:var(--ink-2);position:relative;padding:.3rem 0;transition:color .25s;white-space:nowrap}
 .links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .35s}
 .links a:hover,.links a.active{color:var(--ink)}
 .links a:hover::after,.links a.active::after{transform:scaleX(1)}
@@ -121,48 +121,56 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,6vw,4.2rem)
 
 /* ---------- SEVDİĞİM MÜZİKLER ---------- */
 .genres{display:grid;gap:1.3rem}
-.genre-inner{position:relative;overflow:hidden;border-radius:28px;min-height:40vh;
-  padding:2.2rem clamp(1.4rem,4vw,3rem);display:flex;flex-direction:column;justify-content:flex-end;gap:1rem;
+.genre-inner{position:relative;overflow:hidden;border-radius:28px;min-height:38vh;
+  padding:2.2rem clamp(1.4rem,4vw,3rem);display:flex;flex-direction:column;justify-content:flex-end;gap:1.1rem;
   transition:border-color .4s ease,transform .4s ease}
+/* Resim yoksa türün rengiyle boyanır; resim varsa sade koyu bir örtü kullanılır (renk karışmaz) */
 .genre-inner::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(165deg,color-mix(in srgb,var(--gc) 26%,transparent),transparent 62%)}
+.genre.has-img .genre-inner::before{background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.6))}
 .genre.instage .genre-inner{border-color:color-mix(in srgb,var(--gc) 55%,var(--line));transform:translateY(-2px)}
 .genre-index{position:absolute;top:1.7rem;right:1.9rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;
   color:color-mix(in srgb,var(--gc) 65%,var(--ink-2))}
 .genre h3{position:relative;font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,4.4vw,3rem);letter-spacing:-.03em}
 .genre p{position:relative;color:var(--ink-2);max-width:62ch}
-.genre-foot{position:relative;display:flex;align-items:center;gap:1.1rem;margin-top:.3rem}
-.gplay{flex:none;width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--bg);
-  display:grid;place-items:center;transition:transform .3s,background .3s}
-.gplay:hover{transform:scale(1.08)}
-.genre.playing .gplay{background:color-mix(in srgb,var(--gc) 70%,#fff)}
-.gplay svg{width:22px;height:22px}
-.eq{display:flex;align-items:flex-end;gap:3px;height:16px}
+
+.artists{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.65rem}
+.arow{display:flex;align-items:center;gap:.7rem;padding:.65rem .9rem;border-radius:16px;text-align:left;
+  background:rgba(10,10,11,.4);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  transition:background .25s,border-color .25s,transform .25s}
+.arow:hover{background:rgba(10,10,11,.58);transform:translateY(-2px)}
+.arow.playing{border-color:color-mix(in srgb,var(--gc) 70%,var(--line));background:rgba(10,10,11,.62)}
+.ap-play{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;transition:background .3s}
+.arow.playing .ap-play{background:color-mix(in srgb,var(--gc) 70%,#fff)}
+.ap-play svg{width:15px;height:15px}
+.arow-info{min-width:0;display:flex;flex-direction:column;gap:.05rem}
+.arow-name{font-weight:500;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.arow-count{font-family:var(--mono);font-size:.66rem;color:var(--ink-3)}
+.eq{display:flex;align-items:flex-end;gap:3px;height:14px}
 .eq span{width:3px;background:currentColor;border-radius:2px;animation:eq .9s ease-in-out infinite}
 .eq span:nth-child(2){animation-delay:.2s}
 .eq span:nth-child(3){animation-delay:.4s}
-@keyframes eq{0%,100%{height:4px}50%{height:16px}}
-.gcount{font-family:var(--mono);font-size:.78rem;color:var(--ink-3)}
+@keyframes eq{0%,100%{height:4px}50%{height:14px}}
 
 /* ---------- PROJELER ---------- */
-.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
 .card{padding:0;overflow:hidden;position:relative;display:flex;flex-direction:column;transform-style:preserve-3d;transition:transform .2s ease-out,border-color .3s}
-.card::before{content:"";position:absolute;inset:0;background:radial-gradient(360px circle at var(--cx,50%) var(--cy,0%),rgba(255,255,255,.09),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(300px circle at var(--cx,50%) var(--cy,0%),rgba(255,255,255,.09),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
 .card:hover{border-color:rgba(255,255,255,.22)}
 .card:hover::before{opacity:1}
 .thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#1b1b1e,#2b2b2f);position:relative;overflow:hidden;display:grid;place-items:center}
 .thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .5s,transform .6s}
 .card:hover .thumb img{filter:grayscale(0);transform:scale(1.05)}
-.thumb .ph{font-family:var(--display);font-weight:800;font-size:5rem;color:rgba(255,255,255,.08);letter-spacing:-.05em}
-.card .body{padding:1.5rem 1.7rem 1.8rem}
-.card h3{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.02em;margin-bottom:.4rem;display:flex;justify-content:space-between;align-items:center}
-.card h3 svg{width:20px;height:20px;opacity:.4;transition:.3s}
+.thumb .ph{font-family:var(--display);font-weight:800;font-size:3.4rem;color:rgba(255,255,255,.08);letter-spacing:-.05em}
+.card .body{padding:1.05rem 1.2rem 1.3rem}
+.card h3{font-family:var(--display);font-weight:700;font-size:1.12rem;letter-spacing:-.015em;margin-bottom:.35rem;display:flex;justify-content:space-between;align-items:center}
+.card h3 svg{width:16px;height:16px;opacity:.4;transition:.3s;flex:none}
 .card:hover h3 svg{opacity:1;transform:translate(3px,-3px)}
-.card p{color:var(--ink-2);font-size:.96rem;margin-bottom:1rem}
-.tags{display:flex;gap:.45rem;flex-wrap:wrap}
-.tags span{font-family:var(--mono);font-size:.7rem;padding:.25rem .65rem;border:1px solid var(--line);border-radius:99px;color:var(--ink-2)}
+.card p{color:var(--ink-2);font-size:.86rem;margin-bottom:.8rem}
+.tags{display:flex;gap:.4rem;flex-wrap:wrap}
+.tags span{font-family:var(--mono);font-size:.64rem;padding:.22rem .58rem;border:1px solid var(--line);border-radius:99px;color:var(--ink-2)}
 
-/* ---------- DENEYİM ---------- */
+/* ---------- İLGİ ALANLARIM ---------- */
 .timeline{position:relative;padding-left:2rem;border-left:1px solid var(--line);display:grid;gap:2.4rem}
 .item{position:relative}
 .item::before{content:"";position:absolute;left:calc(-2rem - 5px);top:.55rem;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1.5px solid var(--ink-2);transition:.3s}
@@ -215,7 +223,7 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(255,255,
 @media (max-width:820px){
   .links{display:none}
   .about,.projects{grid-template-columns:1fr}
-  .genre-inner{min-height:34vh}
+  .genre-inner{min-height:auto}
   .player{grid-template-columns:1fr auto;grid-template-areas:"cover ctrl" "prog prog";gap:.6rem 1rem;border-radius:22px}
   .cover{grid-area:cover}.ctrl{grid-area:ctrl}.prog{grid-area:prog}
   .vol{display:none}
@@ -244,7 +252,7 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(255,255,
     <a href="#hakkimda">Hakkımda</a>
     <a href="#muzikler">Müzikler</a>
     <a href="#projeler">Projeler</a>
-    <a href="#deneyim">Deneyim</a>
+    <a href="#ilgi">İlgi Alanlarım</a>
   </div>
 </nav>
 
@@ -281,7 +289,7 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(255,255,
   <section id="muzikler" data-section="muzikler">
     <div class="wrap">
       <h2 class="reveal">Sevdiğim Müzikler</h2>
-      <p class="lead reveal">Takıldığım türler, çalma listeleri ve isimler. Aşağı kaydırdıkça arka plan değişir, her türün kendi çalma listesi var — oynat düğmesine bas ve dinle.</p>
+      <p class="lead reveal">Takıldığım türler ve isimler. Aşağı kaydırdıkça arka plan yavaşça değişir; her sanatçının kendi oynat düğmesi var.</p>
       <div class="genres" id="genres"></div>
     </div>
   </section>
@@ -295,11 +303,11 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(255,255,
     </div>
   </section>
 
-  <!-- DENEYİM -->
-  <section id="deneyim" data-section="deneyim">
+  <!-- İLGİ ALANLARIM -->
+  <section id="ilgi" data-section="ilgi">
     <div class="wrap">
-      <h2 class="reveal">Deneyim</h2>
-      <p class="lead reveal">Şimdiye kadarki yolculuğum.</p>
+      <h2 class="reveal">İlgi Alanlarım</h2>
+      <p class="lead reveal">Boş vaktimi nasıl geçirdiğim.</p>
       <div class="timeline" id="timeline"></div>
     </div>
   </section>
@@ -342,11 +350,10 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 5px rgba(255,255,
    ========================================================= */
 const CONFIG = {
   name: "Alpex",
-  avatar: "https://i.pinimg.com/736x/60/9d/af/609daf092a7fe23dd4932a3321ceeb96.jpg",                 // profil foto yolu, örn: "img/ben.jpg" (boşsa baş harf görünür)
+  avatar: "https://i.pinimg.com/736x/60/9d/af/609daf092a7fe23dd4932a3321ceeb96.jpg",
   taglines: ["Portfolyoma Hoşgeldin", "İlgi alanlarım ve sevdiğim şeyleri öğrenebilirsin", "Ziyaret ettiğin için teşekkürler", ":)"],
-  baseViews: 0,               // sayaç başlangıcı (0 = gerçek ziyaretçi sayısı, istersen 100 gibi bir sayı yaz)
+  baseViews: 0,
 
-  // slug = simpleicons.org'daki ikon adı. url = kendi profil linkin
   socials: [
     { label: "Discord",   slug: "discord",   url: "https://discord.com/users/771462493334667265" },
     { label: "Instagram", slug: "instagram", url: "https://instagram.com/alpex.m" },
@@ -359,37 +366,44 @@ const CONFIG = {
   ],
 
   /* ---------- SEVDİĞİM MÜZİKLER ----------
-     Her tür (genre) kendi klasöründen çalar ve kaydırınca kendi rengiyle
-     arka planı boyar. Dosya yapısı tam olarak şöyle olmalı:
+     Her tür (genre) bir kutu. Bir kutunun içinde birden fazla SANATÇI olabilir,
+     her sanatçının kendi küçük oynat düğmesi var.
 
-       music1/sarki1.mp3, music1/sarki2.mp3, music1/sarki3.mp3   (1. tür)
-       music2/sarki1.mp3, music2/sarki2.mp3 ...                  (2. tür)
+     img: türün arka planına koyacağın KENDİ RESMİN. Örnek: "img/underground.jpg"
+          Resmi index.html'in yanına "img" klasörü açıp içine koy, adını buraya yaz.
+          Boş bırakırsan ("") o zaman sadece aşağıdaki "color" ile boyanır.
+          Resim koyarsan renk karışmaz, sadece okunabilirlik için hafif koyu bir
+          örtü kullanılır — yani istediğin rengi/resmi net görürsün.
+     color: resmin yoksa arka planı boyayan tek hex kod. Resim varsa sadece küçük
+          vurgularda (numaralar, çalan sanatçının çerçevesi gibi) kullanılır.
 
-     Yeni bir tür eklemek için aşağıya { ... } bloklarından birini kopyala,
-     klasör adını (music3, music4...) ve rengi (color) değiştir.
-     color: türün temasını belirleyen tek bir hex kod, arka plan ondan üretiliyor.
-     img (opsiyonel): kendi görselini koymak istersen "img/kapak1.jpg" gibi bir yol yaz,
-       boş bırakırsan sadece renkli gradyan arka plan kullanılır. */
+     Dosya yapısı (şarkılar için):
+       music1/kayra1.mp3, music1/maestro1.mp3, music1/ados1.mp3, music1/sehinsah1.mp3
+       music2/sarki1.mp3, music2/sarki2.mp3 ...
+     Bir sanatçının birden fazla şarkısı olsun istersen songs dizisine yeni satır ekle. */
   playlists: [
     {
       name: "Underground Hip-Hop",
-      desc: "Çağrı Sinci, Kayra, Ados, Şehinşah ve tarzıma yakın diğer isimler.",
-      color: "#8b5cf6",
+      desc: "Bu türde takip ettiğim isimler.",
+      color: "#ea580c",
       img: "",
-      songs: [
-        { title: "Şarkı 1", artist: "Kayra",       src: "music1/sarki1.mp3" },
-        { title: "Şarkı 2", artist: "Çağrı Sinci", src: "music1/sarki2.mp3" },
-        { title: "Şarkı 3", artist: "Ados",        src: "music1/sarki3.mp3" }
+      artists: [
+        { name: "Kayra",    songs: [{ title: "Şarkı 1", src: "music1/kayra1.mp3" }] },
+        { name: "Maestro",  songs: [{ title: "Şarkı 1", src: "music1/maestro1.mp3" }] },
+        { name: "Ados",     songs: [{ title: "Şarkı 1", src: "music1/ados1.mp3" }] },
+        { name: "Şehinşah", songs: [{ title: "Şarkı 1", src: "music1/sehinsah1.mp3" }] }
       ]
     },
     {
       name: "Lo-fi & Chill",
       desc: "Ders çalışırken ya da kafa dağıtırken açtığım sakin parçalar.",
-      color: "#22c1c3",
+      color: "#14b8a6",
       img: "",
-      songs: [
-        { title: "Şarkı 1", artist: "Sanatçı", src: "music2/sarki1.mp3" },
-        { title: "Şarkı 2", artist: "Sanatçı", src: "music2/sarki2.mp3" }
+      artists: [
+        { name: "Karışık Liste", songs: [
+            { title: "Şarkı 1", src: "music2/sarki1.mp3" },
+            { title: "Şarkı 2", src: "music2/sarki2.mp3" }
+        ] }
       ]
     }
   ],
@@ -402,10 +416,11 @@ const CONFIG = {
     { title: "Proje dört", desc: "Kısa bir açıklama yaz: ne yapıyor, kimin için?", tags: ["Node.js", "API"],     img: "", url: "#" }
   ],
 
+  // Sade tutmak istersen aynen kalabilir, kendine göre değiştirmek istersen serbestsin
   timeline: [
-    { time: "2025 — Şimdi", title: "Freelance geliştirici", desc: "Küçük işletmeler ve topluluklar için web siteleri ve botlar geliştiriyorum." },
-    { time: "2024",         title: "İlk büyük projem",      desc: "Sıfırdan bir topluluk platformu tasarladım ve yayına aldım." },
-    { time: "2022",         title: "Kod yazmaya başladım",  desc: "Oyunlar için script yazarak başladım, sonra web'e geçtim." }
+    { time: "Her gün",  title: "Oyun oynamak",  desc: "Boş vaktimin büyük kısmı oyun oynayarak geçiyor." },
+    { time: "Sürekli",  title: "Müzik dinlemek", desc: "Yukarıdaki türleri günün her saati dinliyorum." },
+    { time: "Yeni",     title: "Bu siteyi kurdum", desc: "Kendimi ve sevdiğim şeyleri paylaşmak için bu portfolyoyu hazırladım." }
   ]
 };
 
@@ -424,18 +439,19 @@ $("#socials").innerHTML = CONFIG.socials.map(s =>
   `<a class="soc" href="${s.url}" target="_blank" rel="noopener" aria-label="${s.label}">
      <i style="--ic:url('https://cdn.simpleicons.org/${s.slug}')"></i><em>${s.label}</em></a>`).join("");
 
-$("#genres").innerHTML = CONFIG.playlists.map((g, i) => `
-  <article class="genre reveal" data-i="${i}" style="--gc:${g.color}">
+const playIcon = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span class="eq ap-eq" style="display:none"><span></span><span></span><span></span></span>`;
+$("#genres").innerHTML = CONFIG.playlists.map((g, gi) => `
+  <article class="genre reveal${g.img ? " has-img" : ""}" data-i="${gi}" style="--gc:${g.color}">
     <div class="genre-inner glass">
-      <span class="genre-index">${String(i + 1).padStart(2, "0")}</span>
+      <span class="genre-index">${String(gi + 1).padStart(2, "0")}</span>
       <h3>${g.name}</h3>
       <p>${g.desc}</p>
-      <div class="genre-foot">
-        <button class="gplay" type="button" aria-label="${g.name} çalma listesini çal">
-          <svg class="gp-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          <span class="eq gp-eq" style="display:none"><span></span><span></span><span></span></span>
-        </button>
-        <span class="gcount">${g.songs.length} şarkı</span>
+      <div class="artists">
+        ${g.artists.map((a, ai) => `
+          <button class="arow" type="button" data-gi="${gi}" data-ai="${ai}" aria-label="${a.name} çal">
+            <span class="ap-play">${playIcon}</span>
+            <span class="arow-info"><span class="arow-name">${a.name}</span><span class="arow-count">${a.songs.length} şarkı</span></span>
+          </button>`).join("")}
       </div>
     </div>
   </article>`).join("");
@@ -531,14 +547,17 @@ if (fine) $$(".card").forEach(c => {
   c.addEventListener("pointerleave", () => c.style.transform = "");
 });
 
-/* ============================ TÜRE ÖZEL KAYAN ARKA PLAN ============================ */
+/* ============================ TÜRE ÖZEL, YAVAŞÇA KAYAN ARKA PLAN ============================ */
 const backdrop = $("#genreBackdrop");
 let gbShown = "a";
 function genreGradient(color, img) {
-  const grad = `radial-gradient(circle at 18% 12%, color-mix(in srgb, ${color} 55%, transparent), transparent 55%),
-                radial-gradient(circle at 85% 78%, color-mix(in srgb, ${color} 42%, transparent), transparent 60%),
-                linear-gradient(180deg, color-mix(in srgb, ${color} 16%, #0b0b0c), #0b0b0c 75%)`;
-  return img ? `linear-gradient(rgba(8,8,9,.55),rgba(8,8,9,.78)), url("${img}") center/cover no-repeat, ${grad}` : grad;
+  if (img) {
+    // Resim varken renk KARIŞMAZ; sadece okunabilirlik için ince bir koyu örtü var.
+    return `linear-gradient(180deg, rgba(6,6,7,.28), rgba(6,6,7,.82)), url("${img}") center/cover no-repeat`;
+  }
+  return `radial-gradient(circle at 18% 12%, color-mix(in srgb, ${color} 55%, transparent), transparent 55%),
+          radial-gradient(circle at 85% 78%, color-mix(in srgb, ${color} 42%, transparent), transparent 60%),
+          linear-gradient(180deg, color-mix(in srgb, ${color} 16%, #0b0b0c), #0b0b0c 75%)`;
 }
 function setGenreBg(color, img) {
   const hidden = gbShown === "a" ? "b" : "a";
@@ -558,13 +577,13 @@ const gio = new IntersectionObserver(es => es.forEach(e => {
 genreEls.forEach(el => gio.observe(el));
 
 const bio = new IntersectionObserver(es => es.forEach(e => backdrop.classList.toggle("on", e.isIntersecting)),
-  { rootMargin: "-12% 0px -12% 0px", threshold: 0 });
+  { rootMargin: "-4% 0px -4% 0px", threshold: 0 });
 bio.observe($("#muzikler"));
 
 /* ============================ MÜZİK ÇALAR ============================ */
 const audio = new Audio();
 audio.preload = "metadata";
-let curPL = -1, curSong = 0, wantPlay = false;
+let curPL = -1, curArtist = -1, curSong = 0, wantPlay = false;
 const P = { root: $("#player"), plname: $("#plName"), title: $("#songTitle"), artist: $("#songArtist"),
   seek: $("#seek"), cur: $("#cur"), dur: $("#dur"), vol: $("#volume"), toggle: $("#toggle"),
   play: $("#icoPlay"), pause: $("#icoPause"), volIco: $("#icoVol"), muteIco: $("#icoMute") };
@@ -587,38 +606,39 @@ function directUrl(u) {
 const fmt = s => isFinite(s) ? Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0") : "0:00";
 const fill = el => el.style.setProperty("--p", (el.value - el.min) / (el.max - el.min) * 100 + "%");
 
-function updateGenreCards() {
-  genreEls.forEach(el => {
-    const active = +el.dataset.i === curPL && !audio.paused;
+function updatePlayingUI() {
+  $$(".arow").forEach(el => {
+    const active = +el.dataset.gi === curPL && +el.dataset.ai === curArtist && !audio.paused;
     el.classList.toggle("playing", active);
-    el.querySelector(".gp-play").style.display = active ? "none" : "";
-    el.querySelector(".gp-eq").style.display = active ? "" : "none";
+    el.querySelector(".ap-play svg").style.display = active ? "none" : "";
+    el.querySelector(".ap-eq").style.display = active ? "" : "none";
   });
+  genreEls.forEach(el => el.classList.toggle("playing", +el.dataset.i === curPL && !audio.paused));
 }
 
-function loadSong(plIdx, songIdx, autoplay) {
-  const list = CONFIG.playlists[plIdx].songs;
-  curPL = plIdx; curSong = (songIdx + list.length) % list.length;
-  const s = list[curSong];
+function loadSong(gi, ai, si, autoplay) {
+  const songs = CONFIG.playlists[gi].artists[ai].songs;
+  curPL = gi; curArtist = ai; curSong = (si + songs.length) % songs.length;
+  const s = songs[curSong], artist = CONFIG.playlists[gi].artists[ai];
   audio.src = directUrl(s.src);
-  P.plname.textContent = CONFIG.playlists[curPL].name;
-  P.title.textContent = s.title; P.artist.textContent = s.artist;
+  P.plname.textContent = CONFIG.playlists[gi].name;
+  P.title.textContent = s.title; P.artist.textContent = artist.name;
   P.seek.value = 0; fill(P.seek); P.cur.textContent = "0:00"; P.dur.textContent = "0:00";
   P.root.classList.add("show");
-  updateGenreCards();
+  updatePlayingUI();
   if (autoplay) play();
 }
 function play() { wantPlay = true; audio.play().catch(() => { P.artist.textContent = "Şarkı açılamadı, linki kontrol et"; }); }
 function pause() { wantPlay = false; audio.pause(); }
 
-audio.addEventListener("play", () => { P.root.classList.add("playing"); P.play.style.display = "none"; P.pause.style.display = ""; updateGenreCards(); });
-audio.addEventListener("pause", () => { P.root.classList.remove("playing"); P.play.style.display = ""; P.pause.style.display = "none"; updateGenreCards(); });
+audio.addEventListener("play", () => { P.root.classList.add("playing"); P.play.style.display = "none"; P.pause.style.display = ""; updatePlayingUI(); });
+audio.addEventListener("pause", () => { P.root.classList.remove("playing"); P.play.style.display = ""; P.pause.style.display = "none"; updatePlayingUI(); });
 audio.addEventListener("loadedmetadata", () => P.dur.textContent = fmt(audio.duration));
 audio.addEventListener("timeupdate", () => {
   if (!audio.duration || seeking) return;
   P.seek.value = audio.currentTime / audio.duration * 100; fill(P.seek); P.cur.textContent = fmt(audio.currentTime);
 });
-audio.addEventListener("ended", () => { if (curPL > -1) loadSong(curPL, curSong + 1, true); });
+audio.addEventListener("ended", () => { if (curPL > -1) loadSong(curPL, curArtist, curSong + 1, true); });
 audio.addEventListener("error", () => { P.artist.textContent = "Şarkı açılamadı, linki kontrol et"; });
 
 let seeking = false;
@@ -626,14 +646,14 @@ P.seek.addEventListener("input", () => { seeking = true; fill(P.seek); if (audio
 P.seek.addEventListener("change", () => { if (audio.duration) audio.currentTime = P.seek.value / 100 * audio.duration; seeking = false; });
 
 P.toggle.onclick = () => { if (curPL === -1) return; audio.paused ? play() : pause(); };
-$("#prev").onclick = () => { if (curPL === -1) return; audio.currentTime > 3 ? (audio.currentTime = 0) : loadSong(curPL, curSong - 1, wantPlay || !audio.paused); };
-$("#next").onclick = () => { if (curPL === -1) return; loadSong(curPL, curSong + 1, wantPlay || !audio.paused); };
+$("#prev").onclick = () => { if (curPL === -1) return; audio.currentTime > 3 ? (audio.currentTime = 0) : loadSong(curPL, curArtist, curSong - 1, wantPlay || !audio.paused); };
+$("#next").onclick = () => { if (curPL === -1) return; loadSong(curPL, curArtist, curSong + 1, wantPlay || !audio.paused); };
 
-$$(".gplay").forEach(btn => {
+$$(".arow").forEach(btn => {
   btn.addEventListener("click", () => {
-    const i = +btn.closest(".genre").dataset.i;
-    if (curPL === i) audio.paused ? play() : pause();
-    else loadSong(i, 0, true);
+    const gi = +btn.dataset.gi, ai = +btn.dataset.ai;
+    if (curPL === gi && curArtist === ai) audio.paused ? play() : pause();
+    else loadSong(gi, ai, 0, true);
   });
 });
 
